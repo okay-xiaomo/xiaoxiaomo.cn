@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ChevronRight, Code, Palette, Layout } from "lucide-react";
 import { config } from "@/config";
 import { WeChatButton } from "@/components/WeChatButton";
+import { Modal } from "@/components/Modal";
 
 const IDCard = () => {
   return (
@@ -64,7 +66,7 @@ const IDCard = () => {
                     00000001
                   </div>
                   <div className="bg-[#f86fa6] text-black text-[11px] font-black px-2.5 py-1.5 rounded-lg border-[3px] border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] tracking-widest whitespace-nowrap">
-                    小莫唐尼
+                    古法码农
                   </div>
                 </div>
               </div>
@@ -77,7 +79,7 @@ const IDCard = () => {
                     Name
                   </div>
                   <div className="text-xl font-black text-black tracking-widest">
-                    小莫唐尼
+                    {config.author.name}
                   </div>
                 </div>
 
@@ -162,59 +164,84 @@ const IDCard = () => {
 };
 
 const Hero = () => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const handleShowMyStoryModal = () => {
+    setModalVisible(true);
+  };
+
   return (
-    <section className="min-h-screen pt-46 pb-20 px-6 flex flex-col lg:flex-row items-center lg:items-start justify-center gap-16 max-w-7xl mx-auto">
-      <div className="flex-[1.5] space-y-10 text-center lg:text-left pt-6">
-        <a
-          href="https://mp.weixin.qq.com/s/example1"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block bg-neo-yellow neo-border px-6 py-2 rounded-full font-black text-sm uppercase tracking-widest transform -rotate-2 hover:scale-105 transition-transform"
-        >
-          了解我的故事
-        </a>
-        <h1 className="text-5xl lg:text-6xl xl:text-7xl font-black leading-[1.4] tracking-tighter">
-          <span className="inline-block mb-4">
-            我是
-            <span className="ml-4 text-white bg-neo-pink px-4 py-1 neo-border inline-block transform rotate-1">
-              小莫唐尼
-            </span>
-          </span>
-          <br />
-          <span className="inline-block">
-            一名
-            <span className="ml-4 text-white bg-neo-blue px-4 py-1 neo-border inline-block transform -rotate-1">
-              前端开发工程师
-            </span>
-          </span>
-        </h1>
-        <p className="text-xl lg:text-2xl text-gray-700 max-w-2xl font-medium leading-relaxed mx-auto lg:mx-0">
-          专注于前端开发，致力于为用户提供更好的体验。
-        </p>
-        <div className="flex flex-wrap justify-center lg:justify-start gap-6 pt-4">
-          <a
-            href="https://blog.xiaoxiaomo.cn"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-black text-white neo-button rounded-2xl text-xl px-10 py-4 transform hover:-translate-y-1 transition-transform"
+    <>
+      <section className="min-h-screen pt-46 pb-20 px-6 flex flex-col lg:flex-row items-center lg:items-start justify-center gap-16 max-w-7xl mx-auto">
+        <div className="flex-[1.5] space-y-10 text-center lg:text-left pt-6">
+          <button
+            className="cursor-pointer inline-block bg-neo-yellow neo-border px-6 py-2 rounded-full font-black text-sm uppercase tracking-widest transform -rotate-2 hover:scale-105 transition-transform"
+            title="噢？点击看看会发生什么"
+            onClick={handleShowMyStoryModal}
           >
-            进入博客
-          </a>
-          <a
-            href="https://uni-halo.925i.cn"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-white neo-button rounded-2xl text-xl px-10 py-4 transform hover:-translate-y-1 transition-transform"
-          >
-            开源项目
-          </a>
-          <WeChatButton />
+            了解我的故事
+          </button>
+          <h1 className="text-5xl lg:text-6xl xl:text-7xl font-black leading-[1.4] tracking-tighter">
+            <span className="inline-block mb-4">
+              我是
+              <span className="ml-4 text-white bg-neo-pink px-4 py-1 neo-border inline-block transform rotate-1">
+                小莫唐尼
+              </span>
+            </span>
+            <br />
+            <span className="inline-block">
+              一名
+              <span className="ml-4 text-white bg-neo-blue px-4 py-1 neo-border inline-block transform -rotate-1">
+                前端开发工程师
+              </span>
+            </span>
+          </h1>
+          <p className="text-xl lg:text-2xl text-gray-700 max-w-2xl font-medium leading-relaxed mx-auto lg:mx-0">
+            专注于前端开发，致力于为用户提供更好的体验。
+          </p>
+          <div className="flex flex-wrap justify-center lg:justify-start gap-6 pt-4">
+            <a
+              href="https://blog.xiaoxiaomo.cn"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-black text-white neo-button rounded-2xl text-xl px-10 py-4 transform hover:-translate-y-1 transition-transform"
+            >
+              进入博客
+            </a>
+            <a
+              href="https://uni-halo.925i.cn"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white neo-button rounded-2xl text-xl px-10 py-4 transform hover:-translate-y-1 transition-transform"
+            >
+              开源项目
+            </a>
+            <WeChatButton />
+          </div>
         </div>
-      </div>
-      <div className="flex-1 w-full max-w-125 relative">
-        <IDCard />
-      </div>
-    </section>
+        <div className="flex-1 w-full max-w-125 relative">
+          <IDCard />
+        </div>
+      </section>
+
+      <Modal
+        visible={modalVisible}
+        title="提示"
+        render={() => (
+          <>
+            <h3 className="text-xl text-[#1f2937] mb-3">
+              怎么了，想听听我的故事吗？
+            </h3>
+            <p className="text-gray-500 text-sm font-[system-ui,sans-serif] leading-relaxed">
+              不要着急哦，因为，我的故事才刚刚开始...
+            </p>
+          </>
+        )}
+        okText="知道啦"
+        cancelText="好吧好吧"
+        onOk={() => setModalVisible(false)}
+        onCancel={() => setModalVisible(false)}
+      />
+    </>
   );
 };
 const Services = () => (

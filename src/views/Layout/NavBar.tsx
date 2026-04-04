@@ -3,10 +3,15 @@ import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
 import { motion } from "motion/react";
 import { config, navBars } from "@/config";
-import type { NavBar } from "@/types/layout";
+import type { NavBar as INavBar } from "@/types/layout";
 import clsx from "clsx";
 
-export const Navbar = () => {
+interface NavBarProps {
+  onChange: (navBar: INavBar) => void;
+}
+
+export const NavBar = (props: NavBarProps) => {
+  const { onChange } = props;
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -14,17 +19,20 @@ export const Navbar = () => {
     return navBars.find((n) => n.href === location.pathname) ?? navBars[0];
   }, [location.pathname]);
 
+  onChange(activeNavBar);
+
   const filteredNavBars = navBars.filter((navBar) => navBar.visible);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [activeNavBar]);
 
-  const handleNavBarClick = (navBar: NavBar) => {
+  const handleNavBarClick = (navBar: INavBar) => {
     if (navBar.type === "href") {
       window.open(navBar.href, "_blank");
       return;
     }
+    onChange(navBar);
     navigate(navBar.href);
   };
 
@@ -44,7 +52,10 @@ export const Navbar = () => {
                   : "text-black hover:text-neo-blue",
               )}
             >
-              {navBar.title}
+              <span className="inline-block transform origin-bottom-left transition-all hover:-rotate-6">
+                {" "}
+                {navBar.title}
+              </span>
               {activeNavBar.id === navBar.id && (
                 <motion.div
                   layoutId="nav-underline"
@@ -56,7 +67,8 @@ export const Navbar = () => {
         </div>
         <a
           href={`mailto:${config.author.email}`}
-          className="bg-neo-yellow border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-full font-black text-sm py-2 px-8 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all"
+          className="cursor-pointer bg-neo-yellow border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-full font-black text-sm py-2 px-8 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all"
+          title="嘿嘿，如果想给我发送邮件，可以点击这里"
         >
           联系我
         </a>

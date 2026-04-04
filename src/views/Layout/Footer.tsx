@@ -8,7 +8,7 @@ export const Footer = () => {
     <footer className="bg-white border-t-8 border-black py-12 px-6">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center border-2 shadow-[1px_1px_0px_#000000] border-black">
+          <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center border-2 shadow-[1px_1px_0px_#000000] border-black hover:scale-105 hover:-rotate-12 transition-all">
             <img
               className="w-full h-full rounded-full object-cover"
               src={config.author.avatar}

@@ -78,4 +78,11 @@ export const navBars: NavBar[] = [
     href: "https://uni-halo.925i.cn",
     visible: true,
   },
+  {
+    type: "action",
+    id: "update",
+    title: "更新",
+    href: "",
+    visible: false,
+  },
 ];
