@@ -19,7 +19,8 @@ const Modal = ({
   return (
     <div
       className={clsx(
-        "fixed left-0 top-0 z-100 w-screen h-screen flex items-center justify-center bg-black/5 backdrop-blur-xs",
+        "fixed left-0 top-0 z-100 w-screen h-screen flex items-center justify-center bg-[#1f2937]/5 backdrop-blur-sm",
+        "font-['ZCOOL_KuaiLe',cursive,sans-serif]",
         visible ? "block" : "hidden",
       )}
     >
@@ -33,10 +34,10 @@ const Modal = ({
             添加微信（注明来意）
           </h2>
           <button
+            className="bg-[#fca5a5] border-[3px] border-[#1f2937] rounded-full w-8 h-8 flex items-center justify-center text-[#1f2937] font-black text-lg shadow-[3px_3px_0px_0px_#1f2937] transition-all hover:translate-y-0.5 hover:translate-x-0.5 hover:shadow-none active:scale-95"
             onClick={onClose}
-            className="paper-button w-8 h-8 bg-red-400 text-white rounded-full flex items-center justify-center text-xl font-black absolute -right-2 -top-2 hover:bg-red-500 z-30"
           >
-            ×
+            &times;
           </button>
         </div>
 

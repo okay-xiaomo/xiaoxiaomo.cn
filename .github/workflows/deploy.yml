@@ -1,4 +1,4 @@
-name: Deploy Maintain Page to GitHub Pages
+name: Deploy Home Page to GitHub Pages
 
 on:
   push:
