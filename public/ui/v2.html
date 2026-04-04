@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网站维护中 | 施工涂鸦版</title>
+    
+    <!-- 引入外部手写字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
+    
+    <!-- 1. Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
+    <!-- 2. Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'handwriting': ['"Zhi Mang Xing"', 'cursive'],
+                        'doodle': ['"Comic Neue"', 'cursive', 'sans-serif'],
+                    },
+                    colors: {
+                        'ink-black': '#1a202c',
+                        'warning-yellow': '#fcd34d',
+                        'blueprint-blue': '#e0f2fe',
+                        'tape-color': '#fef08a',
+                        'doodle-pink': '#fbcfe8',
+                        'doodle-green': '#bbf7d0',
+                        'doodle-purple': '#e9d5ff'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            margin: 0;
+            /* 允许纵向滚动以适应新增的底部卡片，但隐藏默认滚动条样式 */
+            overflow-x: hidden; 
+            font-family: 'Comic Neue', sans-serif;
+            background-color: #f8fafc;
+            /* 工程师图纸网格背景 */
+            background-image: 
+                linear-gradient(#cbd5e1 1px, transparent 1px),
+                linear-gradient(90deg, #cbd5e1 1px, transparent 1px);
+            background-size: 30px 30px;
+            cursor: crosshair;
+        }
+
+        /* 隐藏滚动条但保留滚动功能 */
+        ::-webkit-scrollbar { display: none; }
+        
+        /* 手绘硬阴影系列 */
+        .sketch-shadow {
+            box-shadow: 8px 8px 0 0 #1a202c;
+            border: 4px solid #1a202c;
+        }
+        .sketch-shadow-sm {
+            box-shadow: 4px 4px 0 0 #1a202c;
+            border: 3px solid #1a202c;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .sketch-shadow-sm:hover {
+            box-shadow: 6px 6px 0 0 #1a202c;
+            transform: translateY(-4px);
+        }
+
+        /* 斑马线施工条纹 */
+        .construction-stripes {
+            background: repeating-linear-gradient(
+                45deg, #fcd34d, #fcd34d 10px, #1a202c 10px, #1a202c 20px
+            );
+        }
+
+        #three-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        /* 自定义十字星形状供 mo.js 使用 */
+        .cross-shape {
+            width: 20px; height: 20px;
+            position: absolute;
+        }
+        .cross-shape::before, .cross-shape::after {
+            content: ''; position: absolute; background: currentColor;
+        }
+        .cross-shape::before { top: 0; bottom: 0; left: 40%; right: 40%; }
+        .cross-shape::after { left: 0; right: 0; top: 40%; bottom: 40%; }
+    </style>
+</head>
+<body class="py-10">
+
+    <!-- Three.js 渲染层 (背景3D齿轮) -->
+    <div id="three-canvas"></div>
+
+    <!-- 背景2D涂鸦装饰 (Anime.js 将使其旋转/浮动) -->
+    <div class="fixed inset-0 pointer-events-none z-0" id="doodle-layer">
+        <svg class="anime-gear absolute top-10 left-10 w-24 h-24 text-ink-black opacity-30" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+        <svg class="anime-gear absolute bottom-40 right-10 w-32 h-32 text-ink-black opacity-20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+        <svg class="anime-float absolute top-1/3 right-[15%] w-16 h-16 text-ink-black opacity-30" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+    </div>
+
+    <!-- Vue 应用挂载点 -->
+    <div id="app" class="relative z-10 flex flex-col items-center px-4 sm:px-8">
+        
+        <!-- [1] 主公告牌 -->
+        <div id="main-board" class="relative w-full max-w-3xl z-20">
+            <!-- 顶部的封箱胶带 -->
+            <div class="absolute -top-5 left-1/2 -translate-x-1/2 w-48 h-10 bg-tape-color opacity-90 rotate-2 border-2 border-ink-black z-30 shadow-sm transform skew-x-12 flex items-center justify-center pointer-events-none">
+                <span class="text-ink-black font-bold tracking-widest opacity-60 uppercase text-xs">Work In Progress</span>
+            </div>
+
+            <div class="bg-white sketch-shadow rounded-sm p-6 sm:p-10 -rotate-1 relative overflow-hidden">
+                <!-- 顶部斑马线装饰条 -->
+                <div class="absolute top-0 left-0 w-full h-3 construction-stripes"></div>
+
+                <!-- 标题区域 -->
+                <div class="text-center mt-4 mb-8">
+                    <div class="inline-block animate__animated animate__pulse animate__infinite animate__slow">
+                        <span class="text-5xl sm:text-6xl">🚧</span>
+                    </div>
+                    <h1 class="font-handwriting text-5xl sm:text-6xl font-bold text-ink-black mt-4 mb-2 tracking-wide">
+                        网站升级维护中
+                    </h1>
+                    <p class="text-xl text-gray-600 font-doodle border-b-2 border-dashed border-gray-300 pb-4 inline-block">
+                        "正在敲代码，键盘冒烟中..."
+                    </p>
+                </div>
+
+                <!-- 核心数据区：两列布局 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- 左侧：动态状态播报 (Vue) -->
+                    <div class="flex flex-col justify-center border-4 border-ink-black p-5 bg-blueprint-blue relative transform rotate-1">
+                        <div class="absolute -top-3 -left-3 bg-warning-yellow border-2 border-ink-black px-2 py-1 text-sm font-bold shadow-[2px_2px_0_0_#1a202c]">
+                            实时播报
+                        </div>
+                        <div class="flex items-center gap-3 mt-3">
+                            <span class="text-3xl animate__animated animate__spin animate__infinite animate__slower">⚙️</span>
+                            <p class="font-bold text-lg text-ink-black transition-opacity duration-300" :key="statusText">
+                                {{ statusText }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 右侧：倒计时 (Vue) -->
+                    <div class="flex flex-col justify-center items-center">
+                        <p class="font-bold text-ink-black mb-3 bg-warning-yellow px-2 border-2 border-ink-black inline-block transform -rotate-2">
+                            预计苏醒倒计时
+                        </p>
+                        <div class="flex gap-2 text-center font-handwriting">
+                            <div class="w-16 h-16 sm:w-20 sm:h-20 bg-white border-4 border-ink-black flex flex-col justify-center items-center shadow-[4px_4px_0_0_#1a202c]">
+                                <span class="text-3xl sm:text-4xl font-bold">{{ hours }}</span>
+                                <span class="text-xs font-sans font-bold uppercase mt-1">时</span>
+                            </div>
+                            <span class="text-3xl font-bold self-center animate__animated animate__flash animate__infinite animate__slower">:</span>
+                            <div class="w-16 h-16 sm:w-20 sm:h-20 bg-white border-4 border-ink-black flex flex-col justify-center items-center shadow-[4px_4px_0_0_#1a202c]">
+                                <span class="text-3xl sm:text-4xl font-bold">{{ minutes }}</span>
+                                <span class="text-xs font-sans font-bold uppercase mt-1">分</span>
+                            </div>
+                            <span class="text-3xl font-bold self-center animate__animated animate__flash animate__infinite animate__slower">:</span>
+                            <div class="w-16 h-16 sm:w-20 sm:h-20 bg-white border-4 border-ink-black flex flex-col justify-center items-center shadow-[4px_4px_0_0_#1a202c] text-red-500">
+                                <span class="text-3xl sm:text-4xl font-bold">{{ seconds }}</span>
+                                <span class="text-xs font-sans font-bold text-ink-black uppercase mt-1">秒</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- [2] 底部扩展信息区 (联系方式 & 友链) -->
+        <div id="sub-boards" class="w-full max-w-3xl mt-8 grid grid-cols-1 md:grid-cols-5 gap-6 z-10">
+            
+            <!-- 左侧扩展卡：站长名片 (占2份宽度) -->
+            <div class="md:col-span-2 bg-doodle-pink sketch-shadow rounded-sm p-4 transform rotate-2 relative flex flex-col justify-between">
+                <!-- 装饰图钉 -->
+                <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-red-500 rounded-full border-2 border-ink-black shadow-[2px_2px_0_0_#1a202c]">
+                    <div class="w-2 h-2 bg-white rounded-full absolute top-1 left-1 opacity-60"></div>
+                </div>
+                
+                <h3 class="font-bold text-ink-black border-b-2 border-ink-black border-dashed pb-2 mb-3">📞 呼叫站长</h3>
+                
+                <div class="flex items-center justify-between mt-2">
+                    <!-- 邮箱联系 -->
+                    <div class="flex flex-col gap-2">
+                        <a href="mailto:hello@example.com" class="inline-flex items-center gap-2 bg-white px-3 py-1.5 border-2 border-ink-black shadow-[2px_2px_0_0_#1a202c] hover:-translate-y-1 hover:shadow-[4px_4px_0_0_#1a202c] transition-all font-bold text-sm text-ink-black">
+                            <span>✉️</span> 发送邮件
+                        </a>
+                        <span class="text-xs font-bold text-ink-black opacity-60">hello@example.com</span>
+                    </div>
+
+                    <!-- 涂鸦风二维码占位区 -->
+                    <div class="relative group cursor-help">
+                        <div class="w-16 h-16 bg-white border-2 border-ink-black shadow-[2px_2px_0_0_#1a202c] p-1 flex items-center justify-center transition-transform group-hover:scale-110">
+                            <!-- 手绘风格的假二维码 SVG -->
+                            <svg class="w-full h-full text-ink-black" viewBox="0 0 100 100" fill="currentColor">
+                                <rect x="5" y="5" width="30" height="30" fill="none" stroke="currentColor" stroke-width="6"/>
+                                <rect x="12" y="12" width="16" height="16"/>
+                                <rect x="65" y="5" width="30" height="30" fill="none" stroke="currentColor" stroke-width="6"/>
+                                <rect x="72" y="12" width="16" height="16"/>
+                                <rect x="5" y="65" width="30" height="30" fill="none" stroke="currentColor" stroke-width="6"/>
+                                <rect x="12" y="72" width="16" height="16"/>
+                                <!-- 随机杂乱的连接线和方块模拟二维码数据区 -->
+                                <path d="M45 10 h10 v10 h-10 z M45 30 h15 v5 h-15 z M80 45 h10 v15 h-10 z M10 45 h15 v10 h-15 z M35 60 h30 v10 h-30 z M65 70 h20 v20 h-20 z M50 80 h10 v10 h-10 z" />
+                            </svg>
+                        </div>
+                        <!-- Hover 提示语 -->
+                        <div class="absolute -top-8 -right-10 bg-warning-yellow border-2 border-ink-black text-xs font-bold px-2 py-1 rotate-6 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-10">
+                            扫码加微信!
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧扩展卡：传送门 (占3份宽度) -->
+            <div class="md:col-span-3 bg-doodle-green sketch-shadow rounded-sm p-5 transform -rotate-1 relative">
+                <!-- 装饰透明胶 -->
+                <div class="absolute -top-3 right-4 w-12 h-6 bg-white/60 border border-ink-black/20 -rotate-12 backdrop-blur-sm"></div>
+
+                <h3 class="font-bold text-ink-black mb-4 flex items-center justify-between">
+                    <span>🛸 其他秘密基地</span>
+                    <span class="text-xs bg-ink-black text-white px-2 py-0.5 rounded-sm rotate-3">友链</span>
+                </h3>
+
+                <!-- 链接列表 -->
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <!-- 链接 1 -->
+                    <a href="javascript:void(0)" class="flex-1 sketch-shadow-sm bg-white p-3 text-center text-ink-black font-bold decoration-wavy hover:text-blue-600 relative group">
+                        <span class="absolute -top-2 -right-2 text-xl opacity-0 group-hover:opacity-100 group-hover:-translate-y-2 group-hover:rotate-12 transition-all">✨</span>
+                        📝 个人博客
+                    </a>
+                    <!-- 链接 2 -->
+                    <a href="javascript:void(0)" class="flex-1 sketch-shadow-sm bg-doodle-purple p-3 text-center text-ink-black font-bold hover:bg-white transition-colors relative group">
+                        <span class="absolute -top-2 -left-2 text-xl opacity-0 group-hover:opacity-100 group-hover:-translate-y-2 group-hover:-rotate-12 transition-all">📸</span>
+                        画廊摄影
+                    </a>
+                    <!-- 链接 3 -->
+                    <a href="javascript:void(0)" class="flex-1 sketch-shadow-sm bg-white p-3 text-center text-ink-black font-bold hover:bg-warning-yellow transition-colors relative group">
+                        <span class="absolute -bottom-2 -right-2 text-xl opacity-0 group-hover:opacity-100 group-hover:translate-y-2 group-hover:scale-125 transition-all">🐈</span>
+                        撸猫日常
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- 底部互动提示语 -->
+        <p class="mt-12 text-gray-400 font-doodle text-sm pointer-events-none mb-10">
+            * 随意点击空白处释放涂鸦魔法 *
+        </p>
+
+    </div>
+
+    <!-- 引入各种 JS 库 -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <!-- mo.js 从 JSDelivr 引入 -->
+    <script src="https://cdn.jsdelivr.net/npm/@mojs/core"></script>
+
+    <script>
+        // ==========================================
+        // 1. Vue 3: 核心数据逻辑
+        // ==========================================
+        const { createApp, ref, onMounted, onUnmounted } = Vue;
+
+        createApp({
+            setup() {
+                // 倒计时逻辑
+                const hours = ref('04');
+                const minutes = ref('55');
+                const seconds = ref('00');
+                let timer = null;
+                const targetTime = new Date().getTime() + (4 * 60 * 60 * 1000) + (55 * 60 * 1000);
+
+                const updateTime = () => {
+                    const distance = targetTime - new Date().getTime();
+                    if (distance < 0) return clearInterval(timer);
+                    hours.value = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+                    minutes.value = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+                    seconds.value = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
+                };
+
+                // 状态轮播逻辑
+                const statusMessages = [
+                    "正在把咖啡因转化为代码...",
+                    "发现了一个野生Bug，正在捕捉...",
+                    "UI设计师正在像素级对齐...",
+                    "服务器正在做深呼吸...",
+                    "正在植入有趣的彩蛋..."
+                ];
+                const statusText = ref(statusMessages[0]);
+                let statusTimer = null;
+                let statusIndex = 0;
+
+                onMounted(() => {
+                    updateTime();
+                    timer = setInterval(updateTime, 1000);
+                    statusTimer = setInterval(() => {
+                        statusIndex = (statusIndex + 1) % statusMessages.length;
+                        statusText.value = statusMessages[statusIndex];
+                    }, 3000);
+                });
+
+                onUnmounted(() => {
+                    clearInterval(timer);
+                    clearInterval(statusTimer);
+                });
+
+                return { hours, minutes, seconds, statusText };
+            }
+        }).mount('#app');
+
+        // ==========================================
+        // 2. GSAP: 序列入场动画
+        // ==========================================
+        const tl = gsap.timeline();
+        // 主面板砸下来
+        tl.from("#main-board", {
+            duration: 1.2, y: -800, rotation: -10, ease: "bounce.out"
+        })
+        // 底部的两个小卡片依次从下方弹起
+        .from("#sub-boards > div", {
+            duration: 0.8, y: 100, opacity: 0, rotation: 10, stagger: 0.2, ease: "back.out(1.5)"
+        }, "-=0.4");
+
+        // ==========================================
+        // 3. Three.js: 背景 3D 线框渲染
+        // ==========================================
+        const initThreeJS = () => {
+            const container = document.getElementById('three-canvas');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            container.appendChild(renderer.domElement);
+
+            const material = new THREE.MeshBasicMaterial({ color: 0x1a202c, wireframe: true, wireframeLinewidth: 2 });
+            
+            const knot = new THREE.Mesh(new THREE.TorusKnotGeometry(12, 3, 64, 8), material);
+            knot.position.set(-30, 0, -40);
+            scene.add(knot);
+
+            const icosahedron = new THREE.Mesh(new THREE.IcosahedronGeometry(10, 1), material);
+            icosahedron.position.set(30, 15, -50);
+            scene.add(icosahedron);
+
+            camera.position.z = 30;
+
+            const animate = function () {
+                requestAnimationFrame(animate);
+                knot.rotation.x += 0.003; knot.rotation.y += 0.003;
+                icosahedron.rotation.x -= 0.002; icosahedron.rotation.y += 0.004;
+                renderer.render(scene, camera);
+            };
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        };
+        initThreeJS();
+
+        // ==========================================
+        // 4. Anime.js: 2D 元素循环动画
+        // ==========================================
+        anime({ targets: '.anime-gear', rotate: 360, duration: 8000, easing: 'linear', loop: true });
+        anime({ targets: '.anime-float', translateY: [-10, 10], rotate: [-5, 5], duration: 2500, direction: 'alternate', loop: true, easing: 'easeInOutQuad' });
+
+        // ==========================================
+        // 5. Mo.js: 涂鸦风波普爆炸交互 (融合了两个版本特点)
+        // ==========================================
+        
+        // 注册自定义的 mo.js 形状 (十字星)
+        class Cross extends mojs.CustomShape {
+            getShape() { return '<path d="M10,0 L10,20 M0,10 L20,10" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>'; }
+        }
+        mojs.addShape( 'cross', Cross );
+
+        // 核心爆炸：多边形、圆形、十字的混合飞溅
+        const doodleBurst = new mojs.Burst({
+            radius: { 0: 150 },
+            count: 12,
+            children: {
+                shape: ['circle', 'polygon', 'cross', 'rect'],
+                fill: ['#fcd34d', '#fbcfe8', '#bbf7d0', '#e0f2fe', '#1a202c'], // 使用主题涂鸦色
+                strokeWidth: { 6: 0 },
+                radius: { 20: 0 },
+                angle: { 360: 0 },
+                duration: 1200,
+                easing: 'cubic.out'
+            }
+        });
+
+        // 伴随的黑色线条炸裂 (强化手绘感)
+        const lineBurst = new mojs.Burst({
+            radius: { 0: 100 },
+            count: 6,
+            children: {
+                shape: 'line',
+                stroke: '#1a202c',
+                strokeWidth: { 5: 0 },
+                radius: { 25: 0 },
+                angle: { 0: 360 },
+                duration: 800,
+                easing: 'expo.out'
+            }
+        });
+
+        // 全局点击监听
+        document.addEventListener('click', function (e) {
+            // 防止点击按钮链接时触发过大动画阻碍视觉
+            if(e.target.tagName === 'A' || e.target.closest('a')) return;
+
+            doodleBurst.tune({ x: e.pageX, y: e.pageY }).replay();
+            lineBurst.tune({ x: e.pageX, y: e.pageY }).replay();
+        });
+
+    </script>
+</body>
+</html>

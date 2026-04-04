@@ -1,0 +1,41 @@
+@import "tailwindcss";
+@import "animate.css";
+@import "tw-animate-css";
+@import "./theme.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* 滚动条美化 */
+/* Webkit 浏览器 (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #000000;
+}
+
+/* Firefox 浏览器 */
+* {
+  scrollbar-color: #333333 transparent;
+  scrollbar-width: thin;
+}
+
+body { 
+  cursor: url(./images/cat.cur), auto;
+}
