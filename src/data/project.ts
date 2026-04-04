@@ -1,7 +1,7 @@
 // 我的个人项目
 import uniHaloCover from "@/assets/projects/uni-halo.jpg";
-import xiaomoHomeCover from "@/assets/projects/xiaomo-home.jpg";
-
+import home1Cover from "@/assets/projects/home1.jpg";
+import home2Cover from "@/assets/projects/home2.jpg";
 
 export enum ProjectCategory {
   All = "全部",
@@ -15,13 +15,14 @@ export enum ProjectCategory {
   Other = "其他",
 }
 
-interface Project {
+export interface Project {
   id: string;
   name: string;
   description: string;
   category: ProjectCategory;
   href: string;
   cover: string;
+  tags: string[];
   screenshots?: {
     url: string;
     alt?: string;
@@ -37,16 +38,29 @@ export const projects: Project[] = [
     category: ProjectCategory.MiniProgram,
     href: "https://uni-halo.925i.cn",
     cover: uniHaloCover,
+    tags: ["开源"],
     screenshots: [],
   },
-   {
-    id: "xiaomo-home",
-    name: "个人主页",
+  {
+    id: "home2",
+    name: "个人主页2",
+    description:
+      "一个个人主页，基于React技术栈实现（基于其他项目进行二次开发）。",
+    category: ProjectCategory.Website,
+    href: "#",
+    cover: home2Cover,
+    tags: [],
+    screenshots: [],
+  },
+  {
+    id: "home1",
+    name: "个人主页1",
     description:
       "一个个人主页，基于Vue3技术栈实现（基于其他项目进行二次开发）。",
     category: ProjectCategory.Website,
     href: "https://github.com/okay-xiaomo/www.xiaoxiaomo.cn",
-    cover: xiaomoHomeCover,
+    cover: home1Cover,
+    tags: ["开源"],
     screenshots: [],
   },
 ];
