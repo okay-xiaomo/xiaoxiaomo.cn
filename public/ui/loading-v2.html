@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创意加载中</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 点状背景 */
+        .bg-dots {
+            background-image: radial-gradient(#d1d5db 2px, transparent 2px);
+            background-size: 30px 30px;
+        }
+
+        /* 模仿原图的波浪线 */
+        .squiggly-line {
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 4"><path d="M0 3.5c5 0 5-3 10-3s5 3 10 3" fill="none" stroke="%235B92FF" stroke-width="1.5"/></svg>') repeat-x bottom;
+            background-size: 15px 4px;
+            padding-bottom: 6px;
+        }
+
+        /* 卡片摆动动画 */
+        @keyframes custom-swing {
+            0%, 100% { transform: rotate(-1deg); }
+            50% { transform: rotate(1deg); }
+        }
+        .animate-swing {
+            animation: custom-swing 3s ease-in-out infinite;
+        }
+
+        /* 方块小人跳动 */
+        @keyframes character-jump {
+            0%, 100% { transform: translateY(0) scale(1, 1); }
+            50% { transform: translateY(-20px) scale(1.1, 0.9); }
+        }
+        .animate-jump {
+            animation: character-jump 0.6s infinite alternate ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-[#f0f0f0] bg-dots min-h-screen flex items-center justify-center font-black overflow-hidden">
+
+    <div class="relative max-w-lg w-full px-4">
+        
+        <!-- 背景层装饰 (黑色厚阴影层) -->
+        <div class="absolute inset-0 bg-black translate-x-4 translate-y-4 rounded-[50px]"></div>
+
+        <!-- 主卡片 -->
+        <div class="relative bg-white border-[6px] border-black rounded-[50px] p-10 flex flex-col items-center animate-swing">
+            
+            <!-- 顶部“胶带”贴纸 -->
+            <div class="absolute -top-6 bg-[#FFD600] border-4 border-black px-8 py-2 -rotate-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-lg">
+                SYSTEM UPDATE
+            </div>
+
+            <!-- 替代Emoji的动态方块小人 -->
+            <div class="relative mb-12 mt-4">
+                <div class="w-24 h-24 bg-[#00D26A] border-[5px] border-black rounded-2xl flex flex-col items-center justify-center animate-jump shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+                    <!-- 小眼睛 -->
+                    <div class="flex gap-4 mb-2">
+                        <div class="w-3 h-3 bg-black rounded-full animate-pulse"></div>
+                        <div class="w-3 h-3 bg-black rounded-full animate-pulse"></div>
+                    </div>
+                    <!-- 小嘴巴 -->
+                    <div class="w-8 h-2 bg-black rounded-full"></div>
+                </div>
+                <!-- 方块下方的阴影 -->
+                <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-16 h-3 bg-black/10 rounded-[100%]"></div>
+            </div>
+
+            <!-- 设计感文字标题 -->
+            <div class="flex flex-col items-center gap-4 mb-10">
+                <div class="flex items-center gap-2">
+                    <span class="text-4xl">正在</span>
+                    <!-- 仿原图粉色块 -->
+                    <div class="bg-[#FF85A2] border-4 border-black px-4 py-1 -rotate-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                        <span class="text-white text-4xl italic">疯狂</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <!-- 仿原图蓝色块 -->
+                    <div class="bg-[#5B92FF] border-4 border-black px-6 py-1 rotate-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                        <span class="text-white text-4xl">载入资源</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 副标题带波浪线 -->
+            <p class="text-xl text-gray-700 mb-8">
+                <span class="squiggly-line">请稍等，精彩马上就来...</span>
+            </p>
+
+            <!-- 进度条 - 设计成类似刻度尺的风格 -->
+            <div class="w-full h-12 bg-gray-100 border-4 border-black rounded-2xl relative overflow-hidden flex items-center">
+                <!-- 刻度线 -->
+                <div class="absolute inset-0 flex justify-between px-2 opacity-20">
+                    <div class="w-1 h-full bg-black"></div><div class="w-1 h-full bg-black"></div><div class="w-1 h-full bg-black"></div>
+                    <div class="w-1 h-full bg-black"></div><div class="w-1 h-full bg-black"></div><div class="w-1 h-full bg-black"></div>
+                    <div class="w-1 h-full bg-black"></div><div class="w-1 h-full bg-black"></div><div class="w-1 h-full bg-black"></div>
+                </div>
+                <!-- 进度条填充 -->
+                <div class="h-full bg-[#FFD600] border-r-4 border-black transition-all duration-500 ease-out" style="width: 65%;">
+                    <!-- 进度条内部的斜线纹理 -->
+                    <div class="w-full h-full opacity-20" style="background: repeating-linear-gradient(45deg, #000, #000 10px, transparent 10px, transparent 20px);"></div>
+                </div>
+            </div>
+
+            <!-- 底部装饰符号 -->
+            <div class="mt-8 flex justify-between w-full px-4">
+                <div class="text-4xl text-[#FF85A2]">★</div>
+                <div class="text-4xl text-[#5B92FF]">●</div>
+                <div class="text-4xl text-[#00D26A]">▲</div>
+            </div>
+        </div>
+
+        <!-- 外部装饰：左侧的对话气泡 -->
+        <div class="absolute -left-20 top-20 hidden lg:block bg-white border-4 border-black p-4 rounded-3xl -rotate-12 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+            <span class="text-sm">LOADING 88%</span>
+        </div>
+
+        <!-- 外部装饰：右侧的条码贴纸 -->
+        <div class="absolute -right-16 bottom-10 hidden lg:block bg-white border-4 border-black p-3 rounded-lg rotate-12 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+            <div class="flex gap-1">
+                <div class="w-1 h-10 bg-black"></div><div class="w-2 h-10 bg-black"></div><div class="w-1 h-10 bg-black"></div>
+                <div class="w-3 h-10 bg-black"></div><div class="w-1 h-10 bg-black"></div><div class="w-2 h-10 bg-black"></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

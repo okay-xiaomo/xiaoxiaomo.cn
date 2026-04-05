@@ -1,50 +1,67 @@
+import { Suspense } from "react";
 import { createBrowserRouter, type RouteObject } from "react-router";
-import { Layout } from "@/views/Layout";
+import { Layout } from "./lazyViews";
+import { Loading } from "@/components/Loading";
 import { Home } from "@/views/Home";
 import { Articles } from "@/views/Articles";
 import { About } from "@/views/About";
 import { Portfolio } from "@/views/Portfolio";
-
 import { NotFound } from "@/views/NotFound";
 
 const mainRoutes: RouteObject[] = [
   {
-    id: 'home',
+    id: "home",
     path: "/",
     element: <Home />,
   },
   {
-    id: 'about',
+    id: "about",
     path: "/about",
     element: <About />,
   },
   {
-    id: 'articles',
+    id: "articles",
     path: "/articles",
     element: <Articles />,
   },
   {
-    id: 'portfolio',
+    id: "portfolio",
     path: "/portfolio",
     element: <Portfolio />,
-  } 
+  },
 ];
 
 const router = createBrowserRouter(
   [
     {
       path: "/",
-      element: <Layout />,
-      errorElement: <NotFound />,
+      element: (
+        <Suspense fallback={<Loading />}>
+          <Layout />
+        </Suspense>
+      ),
+      errorElement: (
+        <Suspense fallback={<Loading />}>
+          <NotFound />
+        </Suspense>
+      ),
       children: [...mainRoutes],
     },
     {
       path: "/not-found",
-      element: <NotFound />,
+      element: (
+        <Suspense fallback={<Loading />}>
+          <NotFound />
+        </Suspense>
+      ),
     },
     {
       path: "*",
-      element: <NotFound />,
+      element: (
+        <Suspense fallback={<Loading />}>
+          <NotFound />
+        </Suspense>
+      ),
     },
   ],
   {
