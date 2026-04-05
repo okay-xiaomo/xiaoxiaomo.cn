@@ -105,15 +105,29 @@ export const Portfolio = () => {
                       </div>
                       {/* 标签 */}
                       {project.tags.map((tag) => (
-                        <div key={tag} className="bg-green-400 neo-border px-3 py-1 rounded-lg font-bold text-[10px] uppercase">
-                          {tag}
+                        <div
+                          key={tag.name}
+                          className={clsx(
+                            "bg-amber-300 neo-border px-3 py-1 rounded-lg font-bold text-[10px] uppercase",
+                            tag.classNames,
+                          )}
+                        >
+                          {tag.name}
                         </div>
                       ))}
                     </div>
                   </div>
-                  <div className="p-6 flex justify-between items-center bg-white border-t-4 border-black">
-                    <h3 className="text-xl font-black">{project.name}</h3>
-                    <div className="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center neo-border border-white group-hover:bg-neo-pink transition-colors">
+                  <div className="w-full box-border overflow-hidden p-6 flex justify-between items-center gap-x-6 bg-white border-t-4 border-black">
+                    <div className="w-full flex flex-col">
+                      <h3 className="text-xl font-black">{project.name}</h3>
+                      <div
+                        className="text-sm text-gray-600 line-clamp-2"
+                        title={project.description}
+                      >
+                        {project.description}
+                      </div>
+                    </div>
+                    <div className="shrink-0 w-10 h-10 bg-black text-white rounded-full flex items-center justify-center neo-border border-white group-hover:bg-neo-pink transition-colors">
                       <ExternalLink size={18} />
                     </div>
                   </div>

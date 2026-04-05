@@ -30,7 +30,7 @@ const IDCard = () => {
             <line x1="15" y1="9" x2="15.01" y2="9"></line>
           </svg>
           <span className="text-[9px] font-black tracking-tighter text-black mt-1">
-            OFFICIAL
+            XIAOMO
           </span>
         </div>
 
@@ -63,10 +63,10 @@ const IDCard = () => {
                 {/* 标签行 */}
                 <div className="flex gap-2 justify-between">
                   <div className="bg-[#356be5] text-white text-[10px] font-black px-2 py-1.5 rounded-lg border-[3px] border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] tracking-wider">
-                    00000001
+                    001
                   </div>
                   <div className="bg-[#f86fa6] text-black text-[11px] font-black px-2.5 py-1.5 rounded-lg border-[3px] border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] tracking-widest whitespace-nowrap">
-                    古法码农
+                    AI+古法码农
                   </div>
                 </div>
               </div>
@@ -89,7 +89,7 @@ const IDCard = () => {
                     Major
                   </div>
                   <div className="text-[1.15rem] font-black text-black tracking-widest">
-                    网络工程
+                    {config.author.major}
                   </div>
                 </div>
 
@@ -99,7 +99,7 @@ const IDCard = () => {
                     Job
                   </div>
                   <div className="text-[1.05rem] font-black text-black tracking-wide">
-                    前端开发工程师
+                    {config.author.job}
                   </div>
                 </div>
               </div>
@@ -148,9 +148,9 @@ const IDCard = () => {
                 <div className="shrink-0 hover:scale-105 transition-all w-22 h-22 bg-[#f86fa6] rounded-full rotate-16 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center p-3">
                   <div className="w-full h-full bg-[#52d171] rounded-full border-[2.5px] border-black flex flex-col items-center justify-center text-center">
                     <span className="text-[8px] font-black leading-[1.1] text-black tracking-tighter">
-                      OFFICIAL
+                      XIAOMO
                       <br />
-                      VIBE
+                      <span>AI + VIBE</span>
                     </span>
                   </div>
                 </div>
@@ -191,12 +191,22 @@ const Hero = () => {
             <span className="inline-block">
               一名
               <span className="ml-4 text-white bg-neo-blue px-4 py-1 neo-border inline-block transform -rotate-1">
-                前端开发工程师
+                {config.author.job}
               </span>
             </span>
           </h1>
           <p className="text-xl lg:text-2xl text-gray-700 max-w-2xl font-medium leading-relaxed mx-auto lg:mx-0">
-            专注于前端开发，致力于为用户提供更好的体验。
+            但{""}
+            <span
+            className="italic text-neo-blue font-bold"
+              style={{
+                textDecoration: "underline 2px wavy #4D8BFF",
+                textUnderlineOffset: "4px",
+              }}
+            >
+              专注于前端开发
+            </span>
+            ，致力于为用户提供更好的体验。
           </p>
           <div className="flex flex-wrap justify-center lg:justify-start gap-6 pt-4">
             <a

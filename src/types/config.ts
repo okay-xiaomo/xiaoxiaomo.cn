@@ -8,6 +8,9 @@ export interface Config {
   author: {
     name: string;
     avatar: string;
+    major: string;
+    university: string;
+    job: string;
     ipCard: string;
     bio: string;
     email: string;

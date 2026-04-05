@@ -22,7 +22,10 @@ export interface Project {
   category: ProjectCategory;
   href: string;
   cover: string;
-  tags: string[];
+  tags: {
+    name: string;
+    classNames?: string;
+  }[];
   screenshots?: {
     url: string;
     alt?: string;
@@ -38,7 +41,10 @@ export const projects: Project[] = [
     category: ProjectCategory.MiniProgram,
     href: "https://uni-halo.925i.cn",
     cover: uniHaloCover,
-    tags: ["开源"],
+    tags: [
+      { name: "开源", classNames: "bg-green-500" },
+      { name: "原创", classNames: "bg-neo-pink" },
+    ],
     screenshots: [],
   },
   {
@@ -49,7 +55,7 @@ export const projects: Project[] = [
     category: ProjectCategory.Website,
     href: "#",
     cover: home2Cover,
-    tags: [],
+    tags: [{ name: "非原创", classNames: "bg-amber-300" }],
     screenshots: [],
   },
   {
@@ -60,7 +66,10 @@ export const projects: Project[] = [
     category: ProjectCategory.Website,
     href: "https://github.com/okay-xiaomo/www.xiaoxiaomo.cn",
     cover: home1Cover,
-    tags: ["开源"],
+    tags: [
+      { name: "开源", classNames: "bg-green-500" },
+      { name: "非原创", classNames: "bg-amber-300" },
+    ],
     screenshots: [],
   },
 ];
@@ -74,6 +83,7 @@ export const openSourceProjects: Project[] = [
     category: ProjectCategory.MiniProgram,
     href: "https://uni-halo.925i.cn",
     cover: uniHaloCover,
+    tags: [{ name: "开源", classNames: "bg-green-500" }],
     screenshots: [],
   },
 ];

@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { Contact, Globe } from "lucide-react";
 import { config } from "@/config";
+import { skills, workExperiences } from "@/data/about";
 import { WeChatButton } from "@/components/WeChatButton";
 
 const CTA = () => (
@@ -44,18 +45,20 @@ export const About = () => (
             <span
               className="text-neo-blue"
               style={{
-                textDecoration: "underline 2px wavy #000000",
+                textDecoration: "underline 2px wavy #4D8BFF",
                 textUnderlineOffset: "4px",
               }}
             >
               {config.author.name}
             </span>
             ，<br />
-            一位前端开发者，
+            <span>一名 {config.author.job}，</span>
             <br />
-            专注于前端开发。
+            但专注于前端开发。
             <br />
-            <span className="text-3xl">Agent / Vibe Coding 爱好者。</span>
+            <span className="text-3xl">
+              拥抱 AI+ Agent / Vibe Coding 编程。
+            </span>
           </h2>
           <div className="space-y-4 text-lg text-gray-600">
             <p>你好，我是{config.author.name}。</p>
@@ -105,38 +108,7 @@ export const About = () => (
           我的核心技能
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {[
-            {
-              label: "前端开发： Vue / React / TypeScript",
-              value: 98,
-              color: "bg-neo-pink",
-            },
-            {
-              label: "工程化： Vite / Webpack / Docker / CI/CD",
-              value: 80,
-              color: "bg-neo-yellow",
-            },
-            {
-              label: "跨平台开发： Uniapp / Flutter / Electron / Tauri",
-              value: 70,
-              color: "bg-neo-blue",
-            },
-            {
-              label: "WebGis： Threejs / Cesium / Leaflet / OpenLayers",
-              value: 60,
-              color: "bg-neo-green",
-            },
-            {
-              label: "AI：Agent / Vibe Coding",
-              value: 88,
-              color: "bg-neo-green",
-            },
-            {
-              label: "后端开发： Node.js / Python / Java",
-              value: 70,
-              color: "bg-neo-blue",
-            },
-          ].map((skill, i) => (
+          {skills.map((skill, i) => (
             <div key={i} className="neo-card">
               <div className="flex justify-between font-black mb-4">
                 <span>{skill.label}</span>
@@ -158,15 +130,7 @@ export const About = () => (
       <div className="space-y-12">
         <h3 className="text-4xl font-black uppercase italic">个人历程</h3>
         <div className="ml-4 relative pl-8 border-l-8 border-black space-y-12">
-          {[
-            {
-              date: "2020 - 至今",
-              role: "前端开发工程师",
-              company: "某不是知名的互联网公司",
-              description:
-                "在不断实践中打磨技术，一段塑造性格的经历，让我学会自律、坚持与面对压力。",
-            },
-          ].map((item, i) => (
+          {workExperiences.map((item, i) => (
             <div key={i} className="relative">
               <div className="absolute -left-13 top-4 w-8 h-8 bg-black rounded-full neo-border border-white" />
               <div className="neo-card">
