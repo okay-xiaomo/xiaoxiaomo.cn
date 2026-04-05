@@ -34,7 +34,7 @@ const IDCard = () => {
           </span>
         </div>
 
-        <div className="relative w-11/12 h-full ml-6 -rotate-1 bg-white rounded-4xl border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] overflow-hidden">
+        <div className="relative w-11/12 h-full ml-5 -rotate-1 bg-white rounded-4xl border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] overflow-hidden">
           {/* 头部绿色区域 */}
           <div className="bg-[#52d171] px-6 pt-8 pb-6 border-b-4 border-black relative">
             <h1 className="text-3xl font-black tracking-tight text-black leading-none">
@@ -50,7 +50,7 @@ const IDCard = () => {
             {/* 上半部分：头像与信息框网格 */}
             <div className="flex gap-4">
               {/* 左列：头像与标签 */}
-              <div className="w-[42%] flex flex-col gap-3">
+              <div className="w-[45%] flex flex-col gap-3">
                 {/* 头像框 */}
                 <div className="bg-[#f0e9dc] w-full aspect-4/5 rounded-2xl border-[3px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden flex flex-col items-center justify-end group">
                   <img
@@ -63,7 +63,7 @@ const IDCard = () => {
                 {/* 标签行 */}
                 <div className="flex gap-2 justify-between">
                   <div className="bg-[#356be5] text-white text-[10px] font-black px-2 py-1.5 rounded-lg border-[3px] border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] tracking-wider">
-                    001
+                    本科
                   </div>
                   <div className="bg-[#f86fa6] text-black text-[11px] font-black px-2.5 py-1.5 rounded-lg border-[3px] border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] tracking-widest whitespace-nowrap">
                     AI+古法码农
@@ -72,7 +72,7 @@ const IDCard = () => {
               </div>
 
               {/* 右列：三个信息框 */}
-              <div className="w-[58%] flex flex-col gap-3">
+              <div className="w-[55%] flex flex-col gap-3">
                 {/* 姓名框 (黄) */}
                 <div className="bg-[#fbe370] p-3 pt-2 rounded-xl border-[3px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                   <div className="text-[10px] font-black text-black mb-1 tracking-wider uppercase">
