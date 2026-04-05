@@ -49,7 +49,7 @@ export const Layout = () => {
         <UpdateModal
           updateInfo={updateInfo}
           versionInfo={versionInfo}
-          title={`发现新版本 v ${versionInfo?.version ?? updateInfo.version ?? "1.0.0"}`}
+          title={`发现新版本 v ${updateInfo?.version ?? "1.0.0"}`}
           onCancel={() => setHasNewVersion(false)}
           onOk={() => refresh()}
         />

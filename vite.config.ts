@@ -19,6 +19,7 @@ export default defineConfig({
     tailwindcss(),
      webUpdateNotice({
       logVersion: true,
+      hiddenDefaultNotification: true,
       notificationProps: {
         title: "更新提示",
         description: "应用已升级，建议刷新页面查看最新内容",
