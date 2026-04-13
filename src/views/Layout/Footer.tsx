@@ -60,11 +60,11 @@ export const Footer = () => {
           </a>
         </div>
 
-        <div className="text-gray-600 font-bold text-sm">
+        <div className="text-gray-600 font-bold text-sm sm:text-center">
           <div>
             © {currentYear} {config.author.name} 保留所有权利。
           </div>
-          <div className="font-normal flex items-center">
+          <div className="mt-1 flex items-center font-normal text-xs lg:flex-row sm:flex-col">
             <a
               href="https://beian.miit.gov.cn/"
               target="_blank"
@@ -72,7 +72,7 @@ export const Footer = () => {
             >
               桂ICP备17000465号-4
             </a>
-            丨
+            <span className="lg:inline-block sm:hidden">丨</span>
             <a
               href="https://beian.mps.gov.cn/#/query/webSearch?code=44030002007558"
               target="_blank"

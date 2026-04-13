@@ -37,7 +37,7 @@ const IDCard = () => {
 
         {/* 右上角小程序太阳码 */}
         <div className='absolute top-2 right-2 w-24 h-24 bg-white px-1 overflow-hidden rounded-full border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col items-center justify-center z-10 rotate-0 hover:rotate-[5deg] transition-transform'>
-          <img  data-fancybox='gallery' src={mpQrcode} alt="小莫唐尼" />
+          <img data-fancybox='gallery' src={mpQrcode} alt='小莫唐尼' />
         </div>
 
         <div className='relative w-11/12 h-full ml-5 -rotate-1 bg-white rounded-4xl border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] overflow-hidden'>
@@ -151,7 +151,7 @@ const IDCard = () => {
                 </div>
 
                 {/* 右下角官方印章徽章 */}
-                <div className='shrink-0 hover:scale-105 transition-all w-22 h-22 bg-[#f86fa6] rounded-full rotate-16 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center p-3'>
+                <div className='hidden shrink-0 hover:scale-105 transition-all w-22 h-22 bg-[#f86fa6] rounded-full rotate-16 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center p-3'>
                   <div className='w-full h-full bg-[#52d171] rounded-full border-[2.5px] border-black flex flex-col items-center justify-center text-center'>
                     <span className='text-[8px] font-black leading-[1.1] text-black tracking-tighter'>
                       XIAOMO
@@ -159,6 +159,39 @@ const IDCard = () => {
                       <span>AI + VIBE</span>
                     </span>
                   </div>
+                </div>
+
+                <div className='hidden shrink-0 hover:scale-105 transition-all w-24 h-24 bg-white overflow-hidden rounded-full rotate-16 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center p-1'>
+                  <div className='w-full h-full'>
+                    <img
+                      className='w-full h-full'
+                      data-fancybox='gallery'
+                      src={mpQrcode}
+                      alt='小莫唐尼'
+                    />
+                  </div>
+                </div>
+
+                <div className='flex flex-col shrink-0 hover:scale-105 transition-all w-22 h-22 bg-[#f86fa6] rounded-full rotate-16 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center p-3'>
+                  {/* 笑脸 SVG */}
+                  <svg
+                    className='w-10 h-10 mb-0.5'
+                    viewBox='0 0 24 24'
+                    fill='none'
+                    stroke='currentColor'
+                    strokeWidth='3'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    style={{ color: 'black' }}
+                  >
+                    <circle cx='12' cy='12' r='10'></circle>
+                    <path d='M8 14s1.5 2 4 2 4-2 4-2'></path>
+                    <line x1='9' y1='9' x2='9.01' y2='9'></line>
+                    <line x1='15' y1='9' x2='15.01' y2='9'></line>
+                  </svg>
+                  <span className='text-[9px] font-black tracking-tighter text-black mt-1'>
+                    XIAOMO
+                  </span>
                 </div>
               </div>
             </div>
