@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grounded Billboard - Neo-brutalism</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 天空/波点背景，为了配合落地广告牌的场景 */
+        .sky-dot-bg {
+            background-color: #e0f2fe; /* 淡蓝色天空底色 */
+            background-image: radial-gradient(#93c5fd 2px, transparent 2px);
+            background-size: 30px 30px;
+        }
+    </style>
+</head>
+<body class="sky-dot-bg min-h-screen flex items-end justify-center pb-10 p-4 font-sans overflow-hidden">
+
+    <!-- 
+      落地广告牌整体容器 
+      使用 relative 定位，内部元素使用绝对定位组装 
+    -->
+    <div class="relative w-full max-w-[420px] h-[550px] flex justify-center mt-20">
+
+        <!-- ==================== 1. 后置支撑柱 (Wooden Posts) ==================== -->
+        <!-- 左侧木桩 -->
+        <div class="absolute bottom-8 left-[20%] w-8 h-[280px] bg-[#d97706] border-[4px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] -z-10 rounded-t-sm">
+            <!-- 木头纹理点缀 -->
+            <div class="w-full h-[2px] bg-black opacity-30 mt-10"></div>
+            <div class="w-full h-[2px] bg-black opacity-30 mt-20"></div>
+        </div>
+        
+        <!-- 右侧木桩 -->
+        <div class="absolute bottom-8 right-[20%] w-8 h-[280px] bg-[#d97706] border-[4px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] -z-10 rounded-t-sm">
+            <div class="w-full h-[2px] bg-black opacity-30 mt-16"></div>
+            <div class="w-full h-[2px] bg-black opacity-30 mt-24"></div>
+        </div>
+
+        <!-- ==================== 2. 地面/草地 (Ground/Grass) ==================== -->
+        <!-- 使用绿色圆角矩形模拟草丘 -->
+        <div class="absolute bottom-0 w-[120%] h-16 bg-[#22c55e] border-[4px] border-black rounded-t-[50%] shadow-[0px_-4px_0px_0px_rgba(0,0,0,0.1)_inset] flex justify-center items-start pt-2 z-20">
+             <!-- 装饰性小草 -->
+             <svg class="w-8 h-8 text-black opacity-60 -ml-20" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 19V6m-5 8c0-3.5 2-6 5-6s5 2.5 5 6"></path>
+            </svg>
+             <svg class="w-6 h-6 text-black opacity-60 ml-24 mt-2" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 19V6m-5 8c0-3.5 2-6 5-6s5 2.5 5 6"></path>
+            </svg>
+        </div>
+
+        <!-- ==================== 3. 主题广告牌 (The Board) ==================== -->
+        <!-- 板子固定在木桩上半部分，轻微旋转显得不死板 -->
+        <div class="absolute top-0 w-full bg-white border-[4px] border-black shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] p-5 z-10 rotate-[-1deg] hover:rotate-0 transition-transform duration-300">
+            
+            <!-- 装饰：四角的固定螺丝 (Screws) -->
+            <!-- 这些螺丝的X轴位置正好与后面的木桩对齐 -->
+            <div class="absolute top-4 left-[20%] ml-1.5 w-4 h-4 bg-gray-300 border-[2.5px] border-black rounded-full flex items-center justify-center shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]"><div class="w-2 h-[2px] bg-black rotate-45"></div></div>
+            <div class="absolute top-4 right-[20%] mr-1.5 w-4 h-4 bg-gray-300 border-[2.5px] border-black rounded-full flex items-center justify-center shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]"><div class="w-2 h-[2px] bg-black rotate-[120deg]"></div></div>
+            <div class="absolute bottom-4 left-[20%] ml-1.5 w-4 h-4 bg-gray-300 border-[2.5px] border-black rounded-full flex items-center justify-center shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]"><div class="w-2 h-[2px] bg-black rotate-90"></div></div>
+            <div class="absolute bottom-4 right-[20%] mr-1.5 w-4 h-4 bg-gray-300 border-[2.5px] border-black rounded-full flex items-center justify-center shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]"><div class="w-2 h-[2px] bg-black rotate-[10deg]"></div></div>
+
+            <!-- 顶部引导标签 -->
+            <div class="flex justify-between items-center mb-3 mt-2">
+                <span class="bg-black text-white px-2 py-0.5 text-xs font-black uppercase tracking-widest">Next Stop</span>
+                <span class="text-black font-black text-sm border-b-[2px] border-black">V 3.0</span>
+            </div>
+
+            <!-- 图文区：宽幅图片占位 -->
+            <!-- 使用了亮粉色，并在内部加入了一个路标箭头的 SVG -->
+            <div class="w-full h-[140px] bg-[#ff6b9e] border-[3px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-5 flex items-center justify-center relative overflow-hidden group">
+                <!-- 纯CSS条纹背景点缀 -->
+                <div class="absolute inset-0 opacity-20" style="background-image: repeating-linear-gradient(45deg, #000 0, #000 2px, transparent 2px, transparent 8px);"></div>
+                
+                <svg class="w-16 h-16 text-black z-10 group-hover:translate-x-3 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path>
+                </svg>
+            </div>
+
+            <!-- 核心文案区 -->
+            <div class="mb-6 px-1 text-center">
+                <h2 class="text-3xl font-black text-black mb-2 uppercase tracking-wide">
+                    未来路线图
+                </h2>
+                <p class="text-sm font-bold text-gray-600 leading-relaxed">
+                    我们的旅程才刚刚开始。<br>下一站：支持全平台多端数据云同步。
+                </p>
+            </div>
+
+            <!-- CTA 按钮 -->
+            <button class="w-full bg-[#4d90fe] text-white border-[3px] border-black rounded-none py-3 font-black text-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all hover:bg-[#3b82f6] hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none">
+                查看完整 Roadmap
+            </button>
+
+        </div>
+
+        <!-- 装饰性小云朵，挂在广告牌右上角外侧 -->
+        <div class="absolute -top-6 -right-8 w-20 h-12 bg-white border-[3px] border-black rounded-full shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] z-20 before:content-[''] before:absolute before:-top-4 before:left-3 before:w-10 before:h-10 before:bg-white before:border-[3px] before:border-black before:rounded-full before:border-b-0 before:z-[-1] after:content-[''] after:absolute after:-top-2 after:right-2 after:w-8 after:h-8 after:bg-white after:border-[3px] after:border-black after:rounded-full after:border-b-0 after:z-[-1]"></div>
+
+    </div>
+
+</body>
+</html>

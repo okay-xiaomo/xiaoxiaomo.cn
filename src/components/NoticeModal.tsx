@@ -30,7 +30,7 @@ export const NoticeModal: React.FC<NoticeModalProps> = ({
 }) => {
   return (
     <>
-      <div className='fixed inset-0 z-90 w-screen h-screen bg-black/50 backdrop-blur-md'></div>
+      <div className='fixed inset-0 z-90 w-screen h-screen bg-black/30 backdrop-blur-md'></div>
       <div
         className={clsx(
           'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-100 w-full max-w-lg bg-white border-[4px] border-black rounded-2xl shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-transform duration-300',
@@ -60,8 +60,9 @@ export const NoticeModal: React.FC<NoticeModalProps> = ({
           <div className='w-full bg-white border-[4px] border-black rounded-xl shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] overflow-hidden relative group mb-8 flex items-center justify-center'>
             {typeof imageContent === 'string' ? (
               <img
+                data-fancybox='group'
                 src={imageContent}
-                className='w-full h-full object-contain'
+                className='w-full h-full object-contain hover:scale-105 transition-transform duration-300'
                 alt='公告配图'
               />
             ) : (
@@ -94,7 +95,7 @@ export const NoticeModal: React.FC<NoticeModalProps> = ({
             {/* 主按钮 */}
             {onViewDetails && (
               <button
-                className='bg-black text-white border-[3px] border-black rounded-xl px-8 py-2.5 font-bold text-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,0.5)] transition-all hover:bg-gray-800 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.5)] active:translate-y-1 active:shadow-none'
+                className='cursor-pointer bg-black text-white border-[3px] border-black rounded-xl px-8 py-2.5 font-bold text-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,0.5)] transition-all hover:bg-gray-800 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.5)] active:translate-y-1 active:shadow-none'
                 onClick={onViewDetails}
               >
                 知道啦

@@ -4,6 +4,7 @@ import { ChevronRight, Code, Palette, Layout } from 'lucide-react'
 import { config } from '@/config'
 import { WeChatButton } from '@/components/WeChatButton'
 import { Modal } from '@/components/Modal'
+import mpQrcode from '@/assets/images/mp_qrcode.jpg'
 
 const IDCard = () => {
   return (
@@ -12,7 +13,7 @@ const IDCard = () => {
 
       <div className='box-border pt-6 pb-4 relative bg-[#E9E9E9] border-8 border-black rounded-[2.5rem] overflow-hidden transition-transform duration-300 shadow-none'>
         {/* 右上角粉色笑脸徽章 (绝对定位) */}
-        <div className='absolute top-2 right-2 w-24 h-24 bg-[#f86fa6] rounded-full border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col items-center justify-center z-10 rotate-0 hover:rotate-[5deg] transition-transform'>
+        <div className='hidden absolute top-2 right-2 w-24 h-24 bg-[#f86fa6] rounded-full border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col items-center justify-center z-10 rotate-0 hover:rotate-[5deg] transition-transform'>
           {/* 笑脸 SVG */}
           <svg
             className='w-10 h-10 mb-0.5'
@@ -32,6 +33,11 @@ const IDCard = () => {
           <span className='text-[9px] font-black tracking-tighter text-black mt-1'>
             XIAOMO
           </span>
+        </div>
+
+        {/* 右上角小程序太阳码 */}
+        <div className='absolute top-2 right-2 w-24 h-24 bg-white px-1 overflow-hidden rounded-full border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col items-center justify-center z-10 rotate-0 hover:rotate-[5deg] transition-transform'>
+          <img  data-fancybox='gallery' src={mpQrcode} alt="小莫唐尼" />
         </div>
 
         <div className='relative w-11/12 h-full ml-5 -rotate-1 bg-white rounded-4xl border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] overflow-hidden'>
