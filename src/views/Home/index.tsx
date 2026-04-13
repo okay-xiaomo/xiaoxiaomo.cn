@@ -36,8 +36,8 @@ const IDCard = () => {
         </div>
 
         {/* 右上角小程序太阳码 */}
-        <div className='absolute top-2 right-2 w-24 h-24 bg-white px-1 overflow-hidden rounded-full border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col items-center justify-center z-10 rotate-0 hover:rotate-[5deg] transition-transform'>
-          <img data-fancybox='gallery' src={mpQrcode} alt='小莫唐尼' />
+        <div className='absolute top-2 right-2 w-24 h-24 bg-white px-1 overflow-hidden rounded-full border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col items-center justify-center z-10 rotate-0 hover:rotate-[5deg] transition-transform cursor-pointer'>
+          <img data-fancybox='gallery' src={mpQrcode} alt='小莫唐尼' title='点我查看大图'/>
         </div>
 
         <div className='relative w-11/12 h-full ml-5 -rotate-1 bg-white rounded-4xl border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] overflow-hidden'>

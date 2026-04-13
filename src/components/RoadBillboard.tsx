@@ -55,8 +55,9 @@ export const RoadBillboard: React.FC<RoadBillboardProps> = ({
             <img
               data-fancybox='gallery'
               src={imageUrl}
-              className='w-full h-full object-cover z-10'
+              className='w-full h-full object-cover z-10 cursor-pointer'
               alt='路牌'
+              title='点我查看大图'
             />
           ) : (
             /* 模拟图片内容的 Icon */
