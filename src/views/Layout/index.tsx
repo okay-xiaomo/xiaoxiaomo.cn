@@ -6,6 +6,7 @@ import { NavBar } from "./NavBar";
 import { Pet } from "./Pet";
 import { useWebUpdate } from "@/hooks/useUpdate";
 import { UpdateModal } from "@/components/UpdateModal";
+import { Modals } from "./Modals";
 
 export const Layout = () => {
   const location = useLocation();
@@ -54,6 +55,9 @@ export const Layout = () => {
           onOk={() => refresh()}
         />
       )}
+
+      {/* 其他弹窗 */}
+      <Modals />
     </>
   );
 };
