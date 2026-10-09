@@ -78,7 +78,7 @@ export const navBars: NavBar[] = [
     type: "href",
     id: "unihalo",
     title: "UniHalo",
-    href: "https://uni-halo.925i.cn",
+    href: "https://uni-halo.ialley.cn/",
     visible: true,
   },
   {

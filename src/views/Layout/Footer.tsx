@@ -44,7 +44,7 @@ export const Footer = () => {
             个人博客
           </a>
           <a
-            href="https://uni-halo.925i.cn"
+            href="https://uni-halo.ialley.cn/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-neo-blue transition-colors"

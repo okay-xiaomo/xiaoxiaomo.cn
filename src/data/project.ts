@@ -2,6 +2,7 @@
 import uniHaloCover from "@/assets/projects/uni-halo.jpg";
 import home1Cover from "@/assets/projects/home1.jpg";
 import home2Cover from "@/assets/projects/home2.jpg";
+import uniHaloDocs from "@/assets/projects/uni-halo-docs.png";
 
 export enum ProjectCategory {
   All = "全部",
@@ -39,13 +40,13 @@ export const projects: Project[] = [
     description:
       "一个基于Halo Api + UniApp的个人博客系统，支持多平台部署（Web、微信小程序、桌面端）。它的设计初衷是为了满足我对个人博客的定制化需求和移动端体验，同时也希望通过这个项目来探索和实践一些新的技术和设计理念。",
     category: ProjectCategory.MiniProgram,
-    href: "https://uni-halo.925i.cn",
+    href: "https://uni-halo.ialley.cn/",
     cover: uniHaloCover,
     tags: [
       { name: "开源", classNames: "bg-green-500" },
       { name: "原创", classNames: "bg-neo-pink" },
     ],
-    screenshots: [],
+    screenshots: [{ url: uniHaloDocs, alt: "UniHalo 使用文档" }],
   },
   {
     id: "home2",
@@ -81,7 +82,7 @@ export const openSourceProjects: Project[] = [
     description:
       "一个基于Halo Api + UniApp的个人博客系统，支持多平台部署（Web、微信小程序、桌面端）。它的设计初衷是为了满足我对个人博客的定制化需求和移动端体验，同时也希望通过这个项目来探索和实践一些新的技术和设计理念。",
     category: ProjectCategory.MiniProgram,
-    href: "https://uni-halo.925i.cn",
+    href: "https://uni-halo.ialley.cn/",
     cover: uniHaloCover,
     tags: [{ name: "开源", classNames: "bg-green-500" }],
     screenshots: [],

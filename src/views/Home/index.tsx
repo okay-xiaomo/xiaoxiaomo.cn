@@ -257,7 +257,7 @@ const Hero = () => {
               进入博客
             </a>
             <a
-              href='https://uni-halo.925i.cn'
+              href='https://uni-halo.ialley.cn/'
               target='_blank'
               rel='noopener noreferrer'
               className='bg-white neo-button rounded-2xl text-xl px-10 py-4 transform hover:-translate-y-1 transition-transform'
