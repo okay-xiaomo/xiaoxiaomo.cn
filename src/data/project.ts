@@ -3,6 +3,7 @@ import uniHaloCover from "@/assets/projects/uni-halo.jpg";
 import home1Cover from "@/assets/projects/home1.jpg";
 import home2Cover from "@/assets/projects/home2.jpg";
 import uniHaloDocs from "@/assets/projects/uni-halo-docs.png";
+import uniHaloPluginCover from "@/assets/projects/uni-halo-plugin.png";
 
 export enum ProjectCategory {
   All = "全部",
@@ -49,6 +50,20 @@ export const projects: Project[] = [
     screenshots: [{ url: uniHaloDocs, alt: "UniHalo 使用文档" }],
   },
   {
+    id: "uni-halo-plugin",
+    name: "UniHalo 配置插件",
+    description:
+      "免费开源的 UniHalo v3.x 跨平台多端应用新版本配置插件。为跨平台多端应用提供的官方配套插件，提供全部后台配置能力，Halo 2.x 站点装上即用。",
+    category: ProjectCategory.Other,
+    href: "https://www.halo.run/store/apps/app-aukgwe3y",
+    cover: uniHaloPluginCover,
+    tags: [
+      { name: "开源", classNames: "bg-green-500" },
+      { name: "原创", classNames: "bg-neo-pink" },
+    ],
+    screenshots: [],
+  },
+  {
     id: "home2",
     name: "个人主页2",
     description:
@@ -84,6 +99,17 @@ export const openSourceProjects: Project[] = [
     category: ProjectCategory.MiniProgram,
     href: "https://uni-halo.ialley.cn/",
     cover: uniHaloCover,
+    tags: [{ name: "开源", classNames: "bg-green-500" }],
+    screenshots: [],
+  },
+  {
+    id: "uni-halo-plugin",
+    name: "UniHalo 配置插件",
+    description:
+      "免费开源的 UniHalo v3.x 跨平台多端应用新版本配置插件。为跨平台多端应用提供的官方配套插件，提供全部后台配置能力，Halo 2.x 站点装上即用。",
+    category: ProjectCategory.Other,
+    href: "https://www.halo.run/store/apps/app-aukgwe3y",
+    cover: uniHaloPluginCover,
     tags: [{ name: "开源", classNames: "bg-green-500" }],
     screenshots: [],
   },
