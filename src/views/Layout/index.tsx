@@ -56,7 +56,8 @@ export const Layout = () => {
         content={
           <>
             新版UI已上线，使用{' '}
-            <span className='font-bold text-amber-500'>【UniHalo v3.x】</span>，欢迎体验。
+            <span className='font-bold text-amber-500'>【UniHalo v3.x】</span>{' '}
+            免费开源项目部署，欢迎体验。
           </>
         }
         tag='微信小程序：小莫唐尼'
