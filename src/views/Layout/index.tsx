@@ -9,7 +9,7 @@ import { useWebUpdate } from '@/hooks/useUpdate'
 import { UpdateModal } from '@/components/UpdateModal'
 import { RoadBillboard } from '@/components/RoadBillboard'
 import { Modals } from './Modals'
-import WxQrcode from '@/assets/notices/mp-qrcode.jpg'
+const WxQrcode = 'https://cdn.jsdelivr.net/gh/uni-halo/uni-halo-static@main/images/mp.png'
 
 export const Layout = () => {
   const location = useLocation()
@@ -55,7 +55,8 @@ export const Layout = () => {
         title=''
         content={
           <>
-            新版UI已上线，同时上线了 <span className='font-bold text-amber-500'>【SBTI】</span> 测试，欢迎体验。
+            新版UI已上线，使用{' '}
+            <span className='font-bold text-amber-500'>【UniHalo v3.x】</span>，欢迎体验。
           </>
         }
         tag='微信小程序：小莫唐尼'
