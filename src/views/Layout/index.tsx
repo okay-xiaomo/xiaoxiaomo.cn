@@ -9,7 +9,7 @@ import { useWebUpdate } from '@/hooks/useUpdate'
 import { UpdateModal } from '@/components/UpdateModal'
 import { RoadBillboard } from '@/components/RoadBillboard'
 import { Modals } from './Modals'
-const WxQrcode = 'https://gcore.jsdelivr.net/gh/uni-halo/uni-halo-static@main/images/mp.png'
+const WxQrcode = 'https://gcore.jsdelivr.net/gh/uni-halo/uni-halo-static/images/mp.png'
 
 export const Layout = () => {
   const location = useLocation()
