@@ -4,7 +4,7 @@ import { config } from "@/config";
 import { skills, workExperiences } from "@/data/about";
 import { WeChatButton } from "@/components/WeChatButton";
 
-const CTA = () => (
+export const CTA = () => (
   <section className="py-20 px-6 max-w-7xl mx-auto">
     <div className="bg-neo-yellow neo-border neo-shadow rounded-[3rem] p-12 lg:p-20 text-center space-y-8 relative overflow-hidden">
       <div className="space-y-4 relative z-10">

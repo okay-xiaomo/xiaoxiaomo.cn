@@ -1,7 +1,6 @@
 import { useEffect, useMemo } from "react";
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
-import { motion } from "motion/react";
 import { config, navBars } from "@/config";
 import type { NavBar as INavBar } from "@/types/layout";
 import clsx from "clsx";

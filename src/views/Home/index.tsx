@@ -166,7 +166,7 @@ const IDCard = () => {
                     <img
                       className='w-full h-full'
                       data-fancybox='gallery'
-                      src={mpQrcode}
+                      src={MP_QRCODE_URL}
                       alt='小莫唐尼'
                     />
                   </div>
@@ -293,7 +293,7 @@ const Hero = () => {
     </>
   )
 }
-const Services = () => (
+export const Services = () => (
   <section className='py-20 px-6 max-w-7xl mx-auto'>
     <div className='flex flex-col md:flex-row justify-between items-end mb-12 gap-6'>
       <div className='space-y-4'>
@@ -335,7 +335,7 @@ const Services = () => (
   </section>
 )
 
-const Portfolio = () => {
+export const Portfolio = () => {
   const navigate = useNavigate()
 
   const handleToPortfolio = () => {
