@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { NoticeModal } from '@/components/NoticeModal'
 // import { QuickNotice } from '@/components/QuickNotice'
-const coverImage = 'https://cdn.jsdelivr.net/gh/uni-halo/uni-halo-static@main/images/mp.png'
+const coverImage = 'https://gcore.jsdelivr.net/gh/uni-halo/uni-halo-static@main/images/mp.png'
 
 export const Modals = () => {
   const [noticeModalVisible, setNoticeModalVisible] = useState(true)

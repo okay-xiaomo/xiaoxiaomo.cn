@@ -4,7 +4,7 @@ import { ChevronRight, Code, Palette, Layout } from 'lucide-react'
 import { config } from '@/config'
 import { WeChatButton } from '@/components/WeChatButton'
 import { Modal } from '@/components/Modal'
-const MP_QRCODE_URL = 'https://cdn.jsdelivr.net/gh/uni-halo/uni-halo-static@main/gh_qrcode.jpg'
+const MP_QRCODE_URL = 'https://gcore.jsdelivr.net/gh/uni-halo/uni-halo-static@main/gh_qrcode.jpg'
 
 const IDCard = () => {
   return (
