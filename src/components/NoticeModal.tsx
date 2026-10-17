@@ -14,6 +14,8 @@ interface NoticeModalProps {
   onViewDetails?: () => void
   /** 关闭按钮点击事件 */
   onClose?: () => void
+  /** "不再提示"按钮点击事件（当天内不再显示） */
+  onHideToday?: () => void
 }
 
 /**
@@ -27,6 +29,7 @@ export const NoticeModal: React.FC<NoticeModalProps> = ({
   imageContent,
   onViewDetails,
   onClose,
+  onHideToday,
 }) => {
   return (
     <>
@@ -109,6 +112,16 @@ export const NoticeModal: React.FC<NoticeModalProps> = ({
                 onClick={onClose}
               >
                 关闭
+              </button>
+            )}
+
+            {/* 不再提示按钮（当天内不再显示） */}
+            {onHideToday && (
+              <button
+                className='cursor-pointer bg-white text-gray-500 border-[3px] border-black rounded-xl px-6 py-2.5 font-bold text-base shadow-[4px_4px_0px_0px_rgba(0,0,0,0.5)] transition-all hover:text-black hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.5)] active:translate-y-1 active:shadow-none'
+                onClick={onHideToday}
+              >
+                今日不再提示
               </button>
             )}
           </div>

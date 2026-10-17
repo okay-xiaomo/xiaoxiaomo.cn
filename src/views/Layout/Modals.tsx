@@ -3,8 +3,37 @@ import { NoticeModal } from '@/components/NoticeModal'
 // import { QuickNotice } from '@/components/QuickNotice'
 const coverImage = 'https://gcore.jsdelivr.net/gh/uni-halo/uni-halo-static/images/mp.png'
 
+/** 公告"今日不再提示"的存储键前缀 */
+const NOTICE_DISMISS_KEY = 'notice-dismissed-date'
+
+/** 获取今天的日期字符串（yyyy-mm-dd），以自然日为界 */
+const getToday = () => {
+  const now = new Date()
+  const m = String(now.getMonth() + 1).padStart(2, '0')
+  const d = String(now.getDate()).padStart(2, '0')
+  return `${now.getFullYear()}-${m}-${d}`
+}
+
+/** 今天是否已经点击过"不再提示" */
+const isDismissedToday = () => {
+  try {
+    return localStorage.getItem(NOTICE_DISMISS_KEY) === getToday()
+  } catch {
+    return false
+  }
+}
+
+/** 记录"今日不再提示"（跨天自动失效，无需过期清理） */
+const dismissForToday = () => {
+  try {
+    localStorage.setItem(NOTICE_DISMISS_KEY, getToday())
+  } catch {
+    /* localStorage 不可用时忽略，公告仍会显示 */
+  }
+}
+
 export const Modals = () => {
-  const [noticeModalVisible, setNoticeModalVisible] = useState(true)
+  const [noticeModalVisible, setNoticeModalVisible] = useState(!isDismissedToday())
 
   return (
     <>
@@ -30,6 +59,10 @@ export const Modals = () => {
           }
           imageContent={coverImage}
           onViewDetails={() => setNoticeModalVisible(false)}
+          onHideToday={() => {
+            dismissForToday()
+            setNoticeModalVisible(false)
+          }}
         />
       )}
 
