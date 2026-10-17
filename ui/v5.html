@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手绘风 UI 组件预览 (纯内联 Class)</title>
+    <!-- 引入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入手写风格中文字体，增强涂鸦感 -->
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 模拟笔记本横线背景 */
+        body {
+            background-color: #f8fafc;
+            background-image: repeating-linear-gradient(
+                transparent,
+                transparent 39px,
+                #cbd5e1 39px,
+                #cbd5e1 40px
+            );
+            /* 整体倾斜一点点更有感觉 */
+            overflow: hidden;
+        }
+        
+        /* 隐藏滚动条但保持可滚动 */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="h-screen w-screen relative font-['ZCOOL_KuaiLe',cursive,sans-serif] flex items-center justify-center">
+
+    <!-- ========================================== -->
+    <!-- 组件一：消息通知提示弹窗 (右上角悬浮) -->
+    <!-- ========================================== -->
+    <div class="fixed top-8 right-8 flex flex-col gap-4 z-50">
+        
+        <!-- 成功通知 -->
+        <!-- 使用 shadow-[6px_6px_0px_0px_#1f2937] 替代 shadow-doodle -->
+        <!-- 使用 border-[#1f2937] 替代 border-doodle-black -->
+        <div class="bg-white border-[3px] border-[#1f2937] p-4 w-80 shadow-[6px_6px_0px_0px_#1f2937] flex items-start gap-4 -rotate-2 transform transition-transform hover:-rotate-1">
+            <div class="bg-[#bbf7d0] border-2 border-[#1f2937] rounded-sm px-2 py-1 flex-shrink-0 mt-1 shadow-[3px_3px_0px_0px_#1f2937]">
+                <span class="text-sm font-bold text-[#1f2937] tracking-widest">成功</span>
+            </div>
+            <div class="flex-1">
+                <h4 class="text-[#1f2937] font-bold text-lg leading-tight mb-1">保存完毕！</h4>
+                <p class="text-gray-500 text-sm font-[system-ui,sans-serif]">灵感已安全存入小本本。</p>
+            </div>
+            <button class="text-[#1f2937] hover:text-red-500 text-xl leading-none font-bold">&times;</button>
+        </div>
+
+        <!-- 警告通知 (轻微向右倾斜) -->
+        <div class="bg-white border-[3px] border-[#1f2937] p-4 w-80 shadow-[6px_6px_0px_0px_#1f2937] flex items-start gap-4 rotate-1 transform transition-transform hover:rotate-2 mt-2">
+            <div class="bg-[#fca5a5] border-2 border-[#1f2937] rounded-sm px-2 py-1 flex-shrink-0 mt-1 shadow-[3px_3px_0px_0px_#1f2937]">
+                <span class="text-sm font-bold text-[#1f2937] tracking-widest">注意</span>
+            </div>
+            <div class="flex-1">
+                <h4 class="text-[#1f2937] font-bold text-lg leading-tight mb-1">网络开小差啦</h4>
+                <p class="text-gray-500 text-sm font-[system-ui,sans-serif]">草稿已暂存，请检查网络连接。</p>
+            </div>
+            <button class="text-[#1f2937] hover:text-red-500 text-xl leading-none font-bold">&times;</button>
+        </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 组件二：对话确认框 (居中) -->
+    <!-- ========================================== -->
+    
+    <!-- 遮罩层 (模拟涂鸦乱线的透明黑) -->
+    <div class="fixed inset-0 bg-[#1f2937]/20 backdrop-blur-sm z-40 pointer-events-none"></div>
+
+    <!-- 弹窗主体 -->
+    <!-- bg-[#fde68a] 替代 bg-doodle-yellow -->
+    <div class="bg-[#fde68a] border-[4px] border-[#1f2937] shadow-[10px_10px_0px_0px_#1f2937] w-11/12 max-w-md z-50 flex flex-col relative rotate-1">
+        
+        <!-- 头部 -->
+        <div class="flex justify-between items-center p-4 border-b-[4px] border-[#1f2937]">
+            <div class="flex items-center gap-2 text-2xl font-bold text-[#1f2937]">
+                <span class="text-3xl">📝</span> 确认操作
+            </div>
+            
+            <!-- 经典的圆形红叉关闭按钮 -->
+            <button class="bg-[#fca5a5] border-[3px] border-[#1f2937] rounded-full w-8 h-8 flex items-center justify-center text-[#1f2937] font-black text-lg shadow-[3px_3px_0px_0px_#1f2937] transition-all hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-none active:scale-95">
+                &times;
+            </button>
+        </div>
+
+        <!-- 内容区 (模仿图中白色卡片的样式) -->
+        <div class="p-6">
+            <div class="bg-white border-[3px] border-[#1f2937] p-5 shadow-[6px_6px_0px_0px_#1f2937] -rotate-1">
+                <h3 class="text-xl text-[#1f2937] mb-3">真的要删除这篇灵感吗？</h3>
+                <p class="text-gray-500 text-sm font-[system-ui,sans-serif] leading-relaxed">
+                    就像擦掉草稿本上的涂鸦一样，删除后就再也找不回来啦！想清楚哦。
+                </p>
+            </div>
+        </div>
+
+        <!-- 底部操作区 -->
+        <div class="p-5 pt-0 flex justify-end gap-4 mt-2">
+            <!-- 取消按钮 (白色，轻微倾斜) -->
+            <button class="bg-white border-[3px] border-[#1f2937] px-6 py-2 text-[#1f2937] font-bold text-lg shadow-[6px_6px_0px_0px_#1f2937] transition-all hover:translate-y-[4px] hover:translate-x-[4px] hover:shadow-none active:scale-95 -rotate-2">
+                点错了
+            </button>
+            
+            <!-- 确认按钮 (蓝色，轻微倾斜) -->
+            <button class="bg-[#bfdbfe] border-[3px] border-[#1f2937] px-6 py-2 text-[#1f2937] font-bold text-lg shadow-[6px_6px_0px_0px_#1f2937] transition-all hover:translate-y-[4px] hover:translate-x-[4px] hover:shadow-none active:scale-95 rotate-2">
+                残忍删除
+            </button>
+        </div>
+    </div>
+
+</body>
+</html>

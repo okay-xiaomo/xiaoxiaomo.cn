@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手账风格导航 - 精致手绘版</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 背景点状纹理 */
+        .bg-dots {
+            background-image: radial-gradient(#d1d5db 2px, transparent 2px);
+            background-size: 30px 30px;
+        }
+
+        /* 具体的画笔描边动画 - 调慢到 1s */
+        @keyframes draw {
+            from { stroke-dashoffset: 400; }
+            to { stroke-dashoffset: 0; }
+        }
+
+        .scribble-path {
+            stroke-dasharray: 400;
+            stroke-dashoffset: 400;
+            animation: draw 1s ease-in-out forwards;
+        }
+
+        /* 激活时的轻微出现效果 */
+        .active-scribble {
+            animation: scribble-appear 0.3s ease-out forwards;
+            transform-origin: center;
+        }
+
+        @keyframes scribble-appear {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* 整体浮动感 */
+        .nav-float {
+            animation: subtle-float 4s ease-in-out infinite;
+        }
+        @keyframes subtle-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+
+        [v-cloak] { display: none; }
+    </style>
+</head>
+<body class="bg-[#f0f0f0] bg-dots min-h-screen flex items-center justify-center font-bold text-black select-none">
+
+    <div id="app" v-cloak>
+        <!-- 导航栏容器 -->
+        <div class="relative nav-float">
+            
+            <!-- 底层硬阴影 -->
+            <div class="absolute inset-0 bg-black translate-x-2 translate-y-2 rounded-full"></div>
+
+            <!-- 主体 -->
+            <div class="relative bg-white border-[3px] border-black rounded-full px-8 py-3 flex items-center shadow-sm min-w-[750px] h-[76px]">
+                
+                <!-- 导航菜单项 -->
+                <div class="flex items-center gap-2">
+                    <div 
+                        v-for="(item, index) in menuItems" 
+                        :key="index"
+                        @click="activeIndex = index"
+                        class="relative px-5 py-1.5 cursor-pointer transition-all duration-300 flex items-center justify-center"
+                        :class="activeIndex === index ? 'text-[#5B92FF]' : 'hover:text-gray-500'"
+                    >
+                        <!-- 手绘圈 SVG -->
+                        <!-- 调整了宽高 calc 以及 top/left 偏移，使包裹更紧凑 -->
+                        <svg 
+                            v-if="activeIndex === index"
+                            :key="'scribble-' + index"
+                            class="absolute w-[calc(100%+12px)] h-[calc(100%+6px)] -left-[6px] -top-[3px] pointer-events-none active-scribble" 
+                            viewBox="0 0 100 40" 
+                            preserveAspectRatio="none"
+                        >
+                            <!-- 
+                                非闭合路径：
+                                从 M18,8 开始，绕一圈在 M24,12 附近结束，留出缺口
+                            -->
+                            <path 
+                                class="scribble-path"
+                                d="M18,8 
+                                   C40,2 85,2 95,15 
+                                   C105,32 70,38 45,38 
+                                   C15,38 2,30 5,18 
+                                   C6,14 12,11 24,12" 
+                                fill="none" 
+                                stroke="#5B92FF" 
+                                stroke-width="3" 
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                        </svg>
+                        
+                        <span class="relative z-10 text-lg transition-transform" :class="{'scale-105': activeIndex === index}">
+                            {{ item }}
+                        </span>
+                    </div>
+                </div>
+
+                <!-- 中间 Logo -->
+                <div class="flex-grow text-center text-2xl font-black italic tracking-tighter">
+                    UniHalo
+                </div>
+
+                <!-- 联系我 按钮 -->
+                <div class="pr-2">
+                    <div class="relative group cursor-pointer active:translate-y-1 active:translate-x-1 transition-all">
+                        <div class="absolute inset-0 bg-black translate-x-1 translate-y-1 rounded-full transition-transform group-hover:translate-x-1.5 group-hover:translate-y-1.5"></div>
+                        <div class="relative bg-[#FFD600] border-[3px] border-black px-7 py-2 rounded-full text-base font-black hover:bg-[#FFEB3B] transition-colors">
+                            联系我
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const { createApp, ref } = Vue;
+
+        createApp({
+            setup() {
+                const activeIndex = ref(0);
+                const menuItems = ref(['首页', '关于我', '作品', '博客']);
+
+                return {
+                    activeIndex,
+                    menuItems
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

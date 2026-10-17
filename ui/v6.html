@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手绘风 UI 组件集合</title>
+    <!-- 引入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入手写风格中文字体，增强涂鸦感 -->
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 模拟笔记本横线背景 */
+        body {
+            background-color: #f8fafc;
+            background-image: repeating-linear-gradient(
+                transparent,
+                transparent 39px,
+                #cbd5e1 39px,
+                #cbd5e1 40px
+            );
+            /* 页面长了允许滚动 */
+            min-height: 100vh;
+            overflow-y: auto; /* 允许垂直滚动 */
+        }
+        
+        /* 自定义滚动条风格以匹配涂鸦风 */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f8fafc;
+            border-left: 3px solid #1f2937;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #fde68a;
+            border: 3px solid #1f2937;
+        }
+    </style>
+</head>
+<body class="relative font-['ZCOOL_KuaiLe',cursive,sans-serif] p-8 pb-20">
+
+    <!-- ========================================== -->
+    <!-- 组件一：消息通知提示弹窗 (右上角悬浮) -->
+    <!-- ========================================== -->
+    <div class="fixed top-8 right-8 flex flex-col gap-4 z-50 pointer-events-none">
+        
+        <!-- 成功通知 -->
+        <div class="bg-white border-[3px] border-[#1f2937] p-4 w-80 shadow-[6px_6px_0px_0px_#1f2937] flex items-start gap-4 -rotate-2 transform transition-transform hover:-rotate-1 pointer-events-auto">
+            <div class="bg-[#bbf7d0] border-2 border-[#1f2937] rounded-sm px-2 py-1 flex-shrink-0 mt-1 shadow-[3px_3px_0px_0px_#1f2937]">
+                <span class="text-sm font-bold text-[#1f2937] tracking-widest">成功</span>
+            </div>
+            <div class="flex-1">
+                <h4 class="text-[#1f2937] font-bold text-lg leading-tight mb-1">保存完毕！</h4>
+                <p class="text-gray-600 text-sm font-[system-ui,sans-serif] font-medium">灵感已安全存入小本本。</p>
+            </div>
+            <button class="text-[#1f2937] hover:text-red-500 text-xl leading-none font-bold">&times;</button>
+        </div>
+
+    </div>
+
+    <!-- 页面标题说明 -->
+    <div class="text-center mb-12 mt-4">
+        <h1 class="text-4xl text-[#1f2937] font-black inline-block bg-white px-6 py-3 border-[4px] border-[#1f2937] shadow-[8px_8px_0px_0px_#1f2937] -rotate-1">
+            ✨ 涂鸦风 UI 组件库预览
+        </h1>
+    </div>
+
+    <!-- 为方便预览，这里使用 Grid 布局将两个弹窗并排展示 -->
+    <div class="max-w-6xl mx-auto flex flex-wrap justify-center gap-16 items-start">
+
+        <!-- ========================================== -->
+        <!-- 组件二：对话确认框 -->
+        <!-- ========================================== -->
+        <div class="bg-[#fde68a] border-[4px] border-[#1f2937] shadow-[12px_12px_0px_0px_#1f2937] w-full max-w-md flex flex-col relative rotate-1">
+            
+            <!-- 钉子装饰 (模拟贴在墙上的感觉) -->
+            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 w-6 h-6 bg-[#fca5a5] border-[3px] border-[#1f2937] rounded-full shadow-[2px_2px_0px_0px_#1f2937] z-10"></div>
+
+            <!-- 头部 -->
+            <div class="flex justify-between items-center p-4 pb-2 border-b-[4px] border-[#1f2937] border-dashed">
+                <div class="flex items-center gap-2 text-2xl font-bold text-[#1f2937]">
+                    <span class="text-3xl">⚠️</span> 确认操作
+                </div>
+                <!-- 关闭按钮 -->
+                <button class="bg-[#fca5a5] border-[3px] border-[#1f2937] rounded-full w-8 h-8 flex items-center justify-center text-[#1f2937] font-black text-lg shadow-[3px_3px_0px_0px_#1f2937] transition-all hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-[1px_1px_0px_0px_#1f2937] active:scale-95">
+                    &times;
+                </button>
+            </div>
+
+            <!-- 内容区 -->
+            <div class="p-6">
+                <div class="bg-white border-[3px] border-[#1f2937] p-5 shadow-[6px_6px_0px_0px_#1f2937] -rotate-1">
+                    <h3 class="text-xl text-[#1f2937] mb-3">真的要删除这篇灵感吗？</h3>
+                    <p class="text-gray-600 text-[15px] font-[system-ui,sans-serif] leading-relaxed font-medium">
+                        就像擦掉草稿本上的涂鸦一样，删除后就再也找不回来啦！想清楚哦。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 底部操作区 -->
+            <div class="p-5 pt-0 flex justify-end gap-4 mt-2">
+                <button class="bg-white border-[3px] border-[#1f2937] px-6 py-2 text-[#1f2937] font-bold text-lg shadow-[5px_5px_0px_0px_#1f2937] transition-all hover:translate-y-[4px] hover:translate-x-[4px] hover:shadow-none active:scale-95 -rotate-2">
+                    点错了
+                </button>
+                <button class="bg-[#bfdbfe] border-[3px] border-[#1f2937] px-6 py-2 text-[#1f2937] font-bold text-lg shadow-[5px_5px_0px_0px_#1f2937] transition-all hover:translate-y-[4px] hover:translate-x-[4px] hover:shadow-none active:scale-95 rotate-2">
+                    残忍删除
+                </button>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- 组件三：版本升级提示弹窗 -->
+        <!-- ========================================== -->
+        <div class="bg-[#ddd6fe] border-[4px] border-[#1f2937] shadow-[12px_12px_0px_0px_#1f2937] w-full max-w-lg flex flex-col relative -rotate-1">
+            
+            <!-- 胶带装饰 -->
+            <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-white/60 border-[2px] border-[#1f2937] rotate-2 z-10 backdrop-blur-sm shadow-sm"></div>
+
+            <!-- 头部 -->
+            <div class="flex justify-between items-center p-5 pb-3 border-b-[4px] border-[#1f2937]">
+                <div class="flex items-center gap-2 text-2xl font-bold text-[#1f2937]">
+                    <span class="text-3xl">🚀</span> 发现新版本 V2.0
+                </div>
+            </div>
+
+            <!-- 内容区 (更新日志列表) -->
+            <div class="p-6">
+                <div class="bg-white border-[3px] border-[#1f2937] p-6 shadow-[6px_6px_0px_0px_#1f2937] rotate-1 flex flex-col gap-5">
+                    
+                    <p class="text-[#1f2937] font-bold text-lg border-b-2 border-[#1f2937] border-dashed pb-2 mb-2">
+                        来看看这次贴纸本都更新了什么：
+                    </p>
+
+                    <!-- 新增项 -->
+                    <div class="flex gap-3 items-start">
+                        <div class="bg-[#bbf7d0] border-[2px] border-[#1f2937] shadow-[2px_2px_0px_0px_#1f2937] px-2 py-0.5 rounded-sm -rotate-2 transform shrink-0 mt-0.5">
+                            <span class="text-xs font-black text-[#1f2937] tracking-widest">新增</span>
+                        </div>
+                        <p class="text-gray-700 font-[system-ui,sans-serif] text-[15px] font-medium leading-tight pt-1">
+                            支持了全新的**暗黑涂鸦模式**，晚上写笔记也不刺眼啦！
+                        </p>
+                    </div>
+
+                    <!-- 优化项 -->
+                    <div class="flex gap-3 items-start">
+                        <div class="bg-[#bfdbfe] border-[2px] border-[#1f2937] shadow-[2px_2px_0px_0px_#1f2937] px-2 py-0.5 rounded-sm rotate-2 transform shrink-0 mt-0.5">
+                            <span class="text-xs font-black text-[#1f2937] tracking-widest">优化</span>
+                        </div>
+                        <p class="text-gray-700 font-[system-ui,sans-serif] text-[15px] font-medium leading-tight pt-1">
+                            画笔渲染速度提升 200%，手写体验如丝般顺滑。
+                        </p>
+                    </div>
+
+                    <!-- 修复/删除项 -->
+                    <div class="flex gap-3 items-start">
+                        <div class="bg-[#fca5a5] border-[2px] border-[#1f2937] shadow-[2px_2px_0px_0px_#1f2937] px-2 py-0.5 rounded-sm -rotate-1 transform shrink-0 mt-0.5">
+                            <span class="text-xs font-black text-[#1f2937] tracking-widest">移除</span>
+                        </div>
+                        <p class="text-gray-700 font-[system-ui,sans-serif] text-[15px] font-medium leading-tight pt-1">
+                            拔掉了几个陈年老 Bug，并且移除了没人用的旧版图库。
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- 底部操作区 -->
+            <div class="p-6 pt-0 flex justify-between items-center mt-2">
+                <button class="text-gray-500 font-bold text-lg underline decoration-2 decoration-[#1f2937] underline-offset-4 hover:text-[#1f2937] transition-colors rotate-1">
+                    下次一定
+                </button>
+                
+                <button class="bg-[#bbf7d0] border-[4px] border-[#1f2937] px-8 py-3 text-[#1f2937] font-black text-xl shadow-[6px_6px_0px_0px_#1f2937] transition-all hover:translate-y-[4px] hover:translate-x-[4px] hover:shadow-none active:scale-95 -rotate-2 flex items-center gap-2">
+                    立即升级 ✨
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

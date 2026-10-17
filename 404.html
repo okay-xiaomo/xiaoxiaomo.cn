@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>页面不存在 - 小莫唐尼</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(-1deg); }
+      50% { transform: translateY(-10px) rotate(1deg); }
+    }
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes bounce-gentle {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    .animate-bounce-gentle {
+      animation: bounce-gentle 2s ease-in-out infinite;
+    }
+
+    @keyframes wobble {
+      0%, 100% { transform: rotate(-2deg); }
+      50% { transform: rotate(2deg); }
+    }
+    .animate-wobble {
+      animation: wobble 4s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-[#F0F0F0] flex items-center justify-center p-6 font-black relative overflow-hidden">
+  <div
+    class="absolute inset-0 pointer-events-none"
+    style="background-image: radial-gradient(#000 1px, transparent 1px); background-size: 30px 30px;"
+  ></div>
+
+  <div class="pointer-events-none absolute inset-0 opacity-35">
+    <div class="absolute left-[8%] top-[10%] h-24 w-24 rounded-full bg-rose-200 blur-3xl"></div>
+    <div class="absolute right-[10%] top-[18%] h-28 w-28 rounded-full bg-amber-200 blur-3xl"></div>
+    <div class="absolute bottom-[16%] left-[14%] h-32 w-32 rounded-full bg-teal-100 blur-3xl"></div>
+    <div class="absolute right-[12%] bottom-[12%] h-24 w-24 rounded-full bg-sky-100 blur-3xl"></div>
+  </div>
+
+  <div class="relative animate-float z-10">
+    <div class="absolute inset-0 bg-black rounded-[2rem] translate-x-4 translate-y-4"></div>
+
+    <div class="relative bg-white border-4 border-black shadow-[8px_8px_0_rgba(0,0,0,1)] rounded-[2rem] p-6 md:p-8 max-w-xl w-full">
+      <div class="absolute -top-5 left-6 bg-[#FFD600] border-4 border-black px-3 py-1.5 rounded-full shadow-[4px_4px_0_rgba(0,0,0,1)] text-xs font-black -rotate-3">
+        404 ERROR
+      </div>
+
+      <div class="text-center mb-6">
+        <div class="text-7xl md:text-8xl font-black text-black mb-3 animate-bounce-gentle">
+          4 0 4
+        </div>
+        <div class="bg-[#FF6B9C] border-4 border-black px-5 py-2 rounded-2xl inline-block rotate-1">
+          <span class="text-white text-lg font-black tracking-wider">PAGE NOT FOUND</span>
+        </div>
+      </div>
+
+      <div class="flex justify-center mb-6">
+        <div class="w-28 h-28 text-3xl bg-[#52d171] border-4 border-black rounded-3xl flex items-center justify-center animate-bounce-gentle">
+          <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-triangle-alert-icon lucide-triangle-alert"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+        </div>
+      </div>
+
+      <div class="text-center mb-8">
+        <h1 class="text-3xl md:text-4xl font-black mb-3 tracking-tight">哎呀！页面走丢了</h1>
+        <p class="text-gray-600 text-base md:text-lg font-medium leading-relaxed">
+          这个页面可能被外星人带走了，或者链接出了小问题。<br />
+          别担心，我们的首页还在等你呢！
+        </p>
+      </div>
+
+      <div class="text-center mb-6">
+        <a href="/" class="inline-flex items-center gap-3 bg-black text-white border-4 border-black rounded-2xl px-6 py-3 text-lg hover:bg-[#4D8BFF] transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house-icon lucide-house"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          <span class="font-black">回到首页</span>
+        </a>
+      </div>
+
+      <div class="text-center">
+        <p class="text-gray-500 text-sm font-medium">继续探索更多精彩内容吧 ✨</p>
+      </div>
+    </div>
+
+    <div class="absolute -left-8 -top-4 w-16 h-16 bg-[#FF6B9C] border-4 border-black rounded-full transform rotate-12 animate-bounce-gentle"></div>
+    <div class="absolute -right-6 -bottom-6 w-20 h-20 bg-[#4D8BFF] border-4 border-black rounded-2xl transform -rotate-12 animate-wobble"></div>
+    <div class="absolute -right-12 top-1/2 w-12 h-12 bg-[#00D1FF] border-4 border-black rounded-lg transform rotate-45 animate-bounce-gentle"></div>
+  </div>
+
+  <script>lucide.replace();</script>
+</body>
+</html>

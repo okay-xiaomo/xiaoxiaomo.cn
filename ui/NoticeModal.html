@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neo-brutalist Announcement Board</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入外部字体增加设计感 (可选) -->
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+    <style>
+        /* 自定义波点背景，完美还原你的设计稿背景 */
+        .dot-bg {
+            background-color: #f4f4f5;
+            background-image: radial-gradient(#000 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        /* 可选：让部分标题使用俏皮的字体 */
+        .fun-font {
+            font-family: 'ZCOOL KuaiLe', sans-serif;
+        }
+    </style>
+</head>
+<body class="dot-bg min-h-screen flex items-center justify-center p-4 font-sans text-gray-900">
+
+    <!-- 公告牌主容器 -->
+    <!-- 使用粗黑边框和纯黑硬阴影 [12px_12px_0px_0px_rgba(0,0,0,1)] -->
+    <div class="relative w-full max-w-2xl bg-white border-[4px] border-black rounded-2xl shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] mt-10 mb-10 transition-transform duration-300 hover:-translate-y-1 hover:shadow-[16px_16px_0px_0px_rgba(0,0,0,1)]">
+        
+        <!-- 装饰性元素：顶部的胶带贴纸 -->
+        <div class="absolute -top-5 left-1/2 -translate-x-1/2 w-32 h-10 bg-[#ff6b9e] border-[3px] border-black rotate-[-3deg] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center z-10">
+            <span class="font-black tracking-widest text-white text-sm">NOTICE</span>
+        </div>
+
+        <!-- 内部内容区域 -->
+        <div class="p-6 sm:p-10 pt-12">
+            
+            <!-- 头部：标签与日期 -->
+            <div class="flex justify-between items-center mb-6">
+                <div class="bg-[#fcdc4d] border-[3px] border-black px-4 py-1.5 rounded-full shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] text-sm font-black flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-black animate-pulse"></span>
+                    最新发布
+                </div>
+                <div class="font-bold text-black border-b-[3px] border-black border-dashed pb-1">
+                    2023.10.27
+                </div>
+            </div>
+
+            <!-- 图文区：图片占位/容器 -->
+            <!-- 使用了你原图中的绿色作为背景 -->
+            <div class="w-full aspect-[16/9] bg-[#2cd06b] border-[4px] border-black rounded-xl shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] overflow-hidden relative group mb-8 flex items-center justify-center cursor-pointer">
+                <!-- 实际使用时替换为 <img src="..." class="w-full h-full object-cover" /> -->
+                <div class="text-center group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-16 h-16 mx-auto mb-2 text-black" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                    <span class="font-black text-xl text-black bg-white px-3 py-1 border-[2px] border-black rounded-lg">公告特色配图</span>
+                </div>
+            </div>
+
+            <!-- 图文区：文本内容 -->
+            <div class="mb-8">
+                <!-- 借用你原图的蓝色系作为标题强调 -->
+                <h1 class="text-3xl sm:text-4xl font-black mb-4 leading-tight">
+                    个人博客 <span class="bg-[#4d90fe] text-white px-2 py-0.5 border-[3px] border-black rounded-lg shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">V2.0 版</span> 震撼上线！
+                </h1>
+                
+                <p class="text-lg font-bold text-gray-700 leading-relaxed mb-4">
+                    经历了三个月的爆肝开发，全新的全栈博客系统终于和大家见面了。不仅重构了底层的网络工程架构，还为用户带来了<span class="relative inline-block px-1"><span class="relative z-10 text-black">极其丝滑的前端体验</span><span class="absolute bottom-0 left-0 w-full h-3 bg-[#e9d5ff] -z-10 -rotate-1"></span></span>。
+                </p>
+                
+                <!-- 模仿原图底部波浪线的点缀 -->
+                <p class="text-base font-bold text-gray-600 underline decoration-wavy decoration-[#4d90fe] decoration-2 underline-offset-4">
+                    快来体验全新的沉浸式阅读模式和 AI 交互模块吧！
+                </p>
+            </div>
+
+            <!-- 底部：行动号召 (CTA) 按钮组 -->
+            <div class="flex flex-wrap gap-4 items-center">
+                <!-- 主按钮 -->
+                <button class="bg-black text-white border-[3px] border-black rounded-xl px-8 py-3 font-bold text-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,0.5)] transition-all hover:bg-gray-800 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.5)] active:translate-y-1 active:shadow-none">
+                    查看详情内容
+                </button>
+                
+                <!-- 次按钮 (参考微信按钮风格) -->
+                <button class="bg-[#2cd06b] text-black border-[3px] border-black rounded-xl px-6 py-3 font-black text-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none flex items-center gap-2">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.03 2 11c0 2.82 1.45 5.34 3.72 7.02l-.93 3.32 3.86-1.92c1.06.3 2.18.46 3.35.46 5.52 0 10-4.03 10-9s-4.48-9-10-9zm-2 10H8V9h2v3zm4 0h-2V9h2v3z"/></svg>
+                    分享
+                </button>
+            </div>
+
+        </div>
+
+        <!-- 装饰性笑脸图标，呼应原图右侧的徽章 -->
+        <div class="absolute -right-6 -bottom-6 w-16 h-16 bg-[#ff6b9e] rounded-full border-[4px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center z-10 rotate-12 hover:rotate-45 transition-transform duration-300">
+             <svg class="w-8 h-8 text-black" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+        </div>
+
+    </div>
+
+</body>
+</html>

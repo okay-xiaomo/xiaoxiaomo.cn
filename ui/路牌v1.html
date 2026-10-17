@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placard Sign - Neo-brutalism</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 保持有趣的波点背景 */
+        .dot-bg {
+            background-color: #f8fafc; /* 极浅的蓝灰色底 */
+            background-image: radial-gradient(#cbd5e1 2px, transparent 2px);
+            background-size: 28px 28px;
+        }
+    </style>
+</head>
+<body class="dot-bg min-h-screen flex items-center justify-center p-4 font-sans text-gray-900">
+
+    <!-- 
+      整体手举牌容器 (包含牌子和棍子) 
+      group: 用于触发整体的 hover 动画
+      hover:-translate-y-4: 模拟人把牌子向上举起的动作
+    -->
+    <div class="relative flex flex-col items-center group transition-transform duration-300 ease-out hover:-translate-y-4 cursor-pointer mt-10">
+
+        <!-- ==================== 1. 顶部：内容展板 (The Board) ==================== -->
+        <!-- 
+            z-10: 确保展板在棍子上面
+            rotate-[-2deg]: 略微倾斜，打破死板，增加手持的随意感
+        -->
+        <div class="relative z-10 w-[320px] sm:w-[380px] bg-white border-[4px] border-black rounded-3xl p-5 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] rotate-[-2deg] group-hover:rotate-0 transition-transform duration-300">
+            
+            <!-- 装饰性元素：固定胶带 -->
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-16 h-6 bg-[#ff6b9e] border-[3px] border-black rotate-[4deg]"></div>
+
+            <!-- --- 图文区：图片占位 --- -->
+            <!-- 选用高对比的青色作为图片背景 -->
+            <div class="w-full h-[180px] bg-[#06b6d4] border-[3px] border-black rounded-xl mb-4 overflow-hidden relative shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center">
+                <!-- 内部网格线装饰 (纯CSS) -->
+                <div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(#000 1.5px, transparent 1.5px), linear-gradient(90deg, #000 1.5px, transparent 1.5px); background-size: 20px 20px;"></div>
+                
+                <!-- 模拟图片内容的 Icon -->
+                <svg class="w-14 h-14 text-black z-10 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+            </div>
+
+            <!-- --- 图文区：文本内容 --- -->
+            <div class="px-2 pb-2 text-center">
+                <!-- 标签 -->
+                <div class="inline-block bg-[#fcdc4d] border-[2.5px] border-black px-3 py-0.5 rounded-full text-xs font-black mb-3 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                    # NEW FEATURE
+                </div>
+                
+                <h2 class="text-2xl font-black text-black mb-2 tracking-wide">
+                    这里是核心大标题
+                </h2>
+                
+                <p class="text-sm font-bold text-gray-600 leading-relaxed">
+                    这是用于支撑标题的描述性文本。按照原型图设计，上方是吸引眼球的图片，这里是详细的图文说明。
+                </p>
+            </div>
+            
+        </div>
+
+        <!-- ==================== 2. 底部：支撑杆/手柄 (The Pole) ==================== -->
+        <!-- 
+            z-0: 在展板下方
+            -mt-4: 负边距，让棍子向上缩进，实现插在牌子背后的视觉效果
+        -->
+        <div class="relative z-0 w-8 h-[220px] bg-[#d97706] border-[4px] border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] rounded-b-full -mt-4">
+            <!-- 棍子上的木纹高光点缀 -->
+            <div class="absolute top-8 left-1.5 w-1.5 h-16 bg-white opacity-30 rounded-full"></div>
+            <!-- 模拟持握区域的防滑胶条 -->
+            <div class="absolute bottom-6 w-full h-[60px] border-t-[4px] border-b-[4px] border-black bg-[#475569] flex flex-col justify-evenly">
+                <div class="w-full h-1 bg-black opacity-40"></div>
+                <div class="w-full h-1 bg-black opacity-40"></div>
+                <div class="w-full h-1 bg-black opacity-40"></div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
