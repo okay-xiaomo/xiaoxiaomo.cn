@@ -18,6 +18,7 @@ export default defineConfig({
     babel({ presets: [reactCompilerPreset()] }),
     tailwindcss(),
      webUpdateNotice({
+      versionType: "pkg_version",
       logVersion: true,
       hiddenDefaultNotification: true,
       notificationProps: {
