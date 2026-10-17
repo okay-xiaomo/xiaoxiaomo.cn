@@ -69,8 +69,8 @@ export const NavBar = (props: NavBarProps) => {
                 className={clsx(
                   "cursor-pointer font-black text-base transition-colors relative ",
                   activeNavBar.id === navBar.id
-                    ? "text-neo-yellow"
-                    : "text-black hover:text-neo-yellow",
+                    ? "text-[#EAB308]"
+                    : "text-black hover:text-[#EAB308]",
                 )}
               >
                 {/* <!-- 手绘圈 SVG --> */}
@@ -90,7 +90,7 @@ export const NavBar = (props: NavBarProps) => {
                                    C15,38 2,30 5,18 
                                    C6,14 12,11 24,12"
                       fill="none"
-                      stroke="#FFD600"
+                      stroke="#EAB308"
                       stroke-width="3"
                       stroke-linecap="round"
                       stroke-linejoin="round"
